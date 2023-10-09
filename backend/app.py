@@ -16,9 +16,11 @@ import json
 from datetime import datetime, timedelta
 import yaml
 import hashlib
+import PyPDF2
 import uuid
+import io
 
-existing_endpoints = ["/applications", "/resume"]
+existing_endpoints = ["/applications", "/resume","/recommend"]
 
 
 def create_app():
@@ -401,6 +403,40 @@ def create_app():
         except:
             return jsonify({"error": "Internal server error"}), 500
 
+    @app.route("/recommend", methods=["GET"])
+    def recommend_resume():
+        """
+        Recommends a list of jobs in fortune 500 companies based on the user's resume using pdf parsing and ChatGPT
+        """
+        try:
+            userid = get_userid_from_header()
+            try:
+                user = Users.objects(id=userid).first()
+                if len(user.resume.read()) == 0:
+                    raise FileNotFoundError
+                else:
+                    user.resume.seek(0)
+            except:
+                return jsonify({"error": "resume could not be found"}), 400
+            
+            pdf_content = io.BytesIO(user.resume.read())
+            load_pdf = PyPDF2.PdfReader(pdf_content)
+            page_content = load_pdf.pages[0].extract_text()
+            print(page_content)
+            # response = send_file(
+            #     user.resume,
+            #     mimetype="application/pdf",
+            #     attachment_filename="resume.pdf",
+            #     as_attachment=True,
+            # )
+            # response.headers["x-filename"] = "resume.pdf"
+            # response.headers["Access-Control-Expose-Headers"] = "x-filename"
+            return user.resume.read(), 200
+        except:
+            return jsonify({"error": "Internal server error"}), 500
+
+
+
     @app.route("/resume", methods=["POST"])
     def upload_resume():
         """
@@ -470,7 +506,7 @@ with open("application.yml") as f:
     password = info["password"]
     app.config["MONGODB_SETTINGS"] = {
         "db": "appTracker",
-        "host": f"mongodb+srv://{username}:{password}@applicationtracker.287am.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        "host": f"mongodb+srv://{username}:{password}@applicationtracker.p70m6nv.mongodb.net/?retryWrites=true&w=majority",
     }
 db = MongoEngine()
 db.init_app(app)
@@ -535,4 +571,4 @@ def get_new_application_id(user_id):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
