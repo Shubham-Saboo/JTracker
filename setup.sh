@@ -20,6 +20,8 @@ cd ./frontend || exit
 echo -e "Attempting to install NPM packages..."
 npm install
 exit_result $? "NPM package installation"
+virtualenv venv
+source venv/bin/activate
 echo -e "Verifying pip installation..."
 pip -V
 exit_result $? "pip installation check"
