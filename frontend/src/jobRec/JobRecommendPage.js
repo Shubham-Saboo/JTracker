@@ -47,7 +47,8 @@ export default class JobRecommendPage extends Component {
       },
       contentType: "application/json",
       success: (response) => {
-        this.setState({ jobRecommendations: response });
+        let responseJson = JSON.parse(response)
+        this.setState({ jobRecommendations: responseJson });
       },
     });
   }
