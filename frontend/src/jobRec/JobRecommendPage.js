@@ -12,7 +12,7 @@ export default class JobRecommendPage extends Component {
     this.state = {
       fileName: "",
       fileuploadname: "",
-      jobRecommendations: [],
+      jobRecommendations: {},
     };
     this.getFiles.bind(this);
   }
@@ -79,9 +79,9 @@ export default class JobRecommendPage extends Component {
           </tr>
         </table>
         <h2>Job Recommendations</h2>
-        {this.state.jobRecommendations.length > 0 &&
-          this.state.jobRecommendations["jobs"].map((job) => (
-            <div>
+        {Object.keys(this.state.jobRecommendations).length > 0 &&
+          this.state.jobRecommendations.jobs.map((job, index) => (
+            <div key={index}>
               <h3>{job.job_title}</h3>
               <p>{job.company_name}</p>
               <p>{job.career_page}</p>
