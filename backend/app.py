@@ -299,7 +299,8 @@ def create_app():
             if request.args.get("keywords")
             else "random_test_keyword"
         )
-        salary = request.args.get("salary") if request.args.get("salary") else ""
+        salary = request.args.get(
+            "salary") if request.args.get("salary") else ""
         keywords = keywords.replace(" ", "+")
         if keywords == "random_test_keyword":
             return json.dumps({"label": str("successful test search")})
@@ -315,34 +316,38 @@ def create_app():
         else:
             url = "https://www.google.com/search?q=" + keywords + "&ibp=htl;jobs"
 
-        # webdriver can run the javascript and then render the page first.
-        # This prevent websites don't provide Server-side rendering
-        # leading to crawlers cannot fetch the page
-        chrome_options = Options()
-        # chrome_options.add_argument("--no-sandbox") # linux only
-        chrome_options.add_argument("--headless")
-        # user_agent = (
-        #     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) "
-        #     "Chrome/71.0.3578.98 Safari/537.36 "
-        # )
-        # chrome_options.add_sargument(f"user-agent={user_agent}")
-        driver = webdriver.Chrome(
-            ChromeDriverManager().install(),options=chrome_options
-        )
-        driver.get(url)
-        content = driver.page_source
-        driver.close()
-        soup = BeautifulSoup(content)
+       
+        headers = {"User-Agent":
+                   #    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
+                   user_agent.random,
+                   "Referrer": "https://www.google.com/"
+                   }
 
-        # parsing searching results to DataFrame and return
-        df = pd.DataFrame(columns=["jobTitle", "companyName", "location"])
-        mydivs = soup.find_all("div", {"class": "PwjeAc"})
-        for i, div in enumerate(mydivs):
-            df.at[i, "jobTitle"] = div.find("div", {"class": "BjJfJf PUpOsf"}).text
-            df.at[i, "companyName"] = div.find("div", {"class": "vNEEBe"}).text
-            df.at[i, "location"] = div.find("div", {"class": "Qk80Jf"}).text
-            df.at[i, "date"] = div.find_all("span", class_="SuWscb", limit=1)[0].text
-        return jsonify(df.to_dict("records"))
+        page = requests.get(url, headers=headers)
+        soup = BeautifulSoup(page.text, "html.parser")
+
+        job_data = pd.DataFrame(columns=["Job_Title", "Company_Name", "Location", "Date"])
+        job_divs = soup.find_all("div", class_="PwjeAc")
+
+        for index, div in enumerate(job_divs):
+            job_data.at[index, "Job_Title"] = div.find("div", {"class": "BjJfJf PUpOsf"}).text
+            job_data.at[index, "Company_Name"] = div.find("div", {"class": "vNEEBe"}).text
+            job_data.at[index, "Location"] = div.find("div", {"class": "Qk80Jf"}).text
+            job_data.at[index, "Date"] = div.find_all("span", {"class": "LL4CDc"}, limit=1)[0].text
+
+            # Collect Job Description Details
+            desc_elements = div.find_all("div", {"class": "JxVj3d"})
+            for element in desc_elements:
+                details = list(desc.text for desc in element.find_all("div", {"class": "nDgy9d"}))
+                title = element.find("div", {"class": "iflMsb"}).text
+                if details:
+                    job_data.at[index, str(title).lower()] = details
+
+        missing_columns = list((job_data.loc[:, job_data.isnull().sum(axis=0).astype(bool)]).columns)
+
+        for column in missing_columns:
+            job_data.loc[job_data[column].isnull(), [column]] = job_data.loc[job_data[column].isnull(), column].apply(lambda x: [])
+        return jsonify(job_data.to_dict("records"))
 
 #____________________________________________________________________________________________________________________________________________   
     # get data from the CSV file for rendering root page
