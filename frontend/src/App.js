@@ -8,6 +8,7 @@ import SearchPage from "./search/SearchPage";
 import LoginPage from "./login/LoginPage";
 import ManageResumePage from "./resume/ManageResumePage";
 import JobRecommendPage from "./jobRec/JobRecommendPage";
+import ResumeBuilder from "./resume/ResumeBuilder";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
       LoginPage: <LoginPage />,
       ManageResumePage: <ManageResumePage />,
       JobRecommendPage: <JobRecommendPage />,
+      ResumeBuilder:<ResumeBuilder/>
     };
     this.state = {
       currentPage: <LoginPage />,

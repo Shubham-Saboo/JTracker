@@ -2,7 +2,7 @@
 The flask application for our program
 """
 # importing required python libraries
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request, send_file, redirect, url_for, session
 from flask_mongoengine import MongoEngine
 from flask_cors import CORS, cross_origin
 from selenium import webdriver
@@ -21,6 +21,20 @@ import uuid
 import io
 import os
 import openai 
+from io import BytesIO
+from docx import Document
+from docx.shared import Pt
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+import json
+import certifi
+import requests
+
+import smtplib
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from authlib.integrations.flask_client import OAuth
+from authlib.common.security import generate_token
+from fake_useragent import UserAgent
 
 
 from dotenv import load_dotenv
@@ -29,7 +43,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 existing_endpoints = ["/applications", "/resume","/recommend"]
 
-
+user_agent = UserAgent()
 def create_app():
     """
     Creates a server hosted on localhost
@@ -39,10 +53,22 @@ def create_app():
     app = Flask(__name__)
     # make flask support CORS
     CORS(app)
-    app.config["CORS_HEADERS"] = "Content-Type"
+
+
+    
+
+
+
+    # SCOPES = ['https://www.googleapis.com/auth/calendar']
+    # credentials = service_account.Credentials.from_service_account_file(
+    #     'app.py',
+    #     scopes=SCOPES,
+    # )
+    # service = build('calendar', 'v3', credentials=credentials)
+
 
     @app.errorhandler(404)
-    def page_not_found(e):
+    def page_not_found(e):  
         """
         Returns a json object to indicate error 404
 
@@ -100,6 +126,8 @@ def create_app():
 
         except:
             return jsonify({"error": "Internal server error"}), 500
+        
+    
 
     def get_token_from_header():
         """
@@ -141,6 +169,7 @@ def create_app():
     @cross_origin()
     def health_check():
         return jsonify({"message": "Server up and running"}), 200
+    
 
     @app.route("/users/signup", methods=["POST"])
     def sign_up():
@@ -182,6 +211,25 @@ def create_app():
         except:
             return jsonify({"error": "Internal server error"}), 500
 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     @app.route("/users/login", methods=["POST"])
     def login():
         """
@@ -238,6 +286,7 @@ def create_app():
     # search function
     # params:
     #   -keywords: string
+    #________________________________________________________________________________________________________________-
     @app.route("/search")
     def search():
         """
@@ -272,13 +321,13 @@ def create_app():
         chrome_options = Options()
         # chrome_options.add_argument("--no-sandbox") # linux only
         chrome_options.add_argument("--headless")
-        user_agent = (
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/71.0.3578.98 Safari/537.36 "
-        )
-        chrome_options.add_argument(f"user-agent={user_agent}")
+        # user_agent = (
+        #     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) "
+        #     "Chrome/71.0.3578.98 Safari/537.36 "
+        # )
+        # chrome_options.add_sargument(f"user-agent={user_agent}")
         driver = webdriver.Chrome(
-            ChromeDriverManager().install(), chrome_options=chrome_options
+            ChromeDriverManager().install(),options=chrome_options
         )
         driver.get(url)
         content = driver.page_source
@@ -295,6 +344,7 @@ def create_app():
             df.at[i, "date"] = div.find_all("span", class_="SuWscb", limit=1)[0].text
         return jsonify(df.to_dict("records"))
 
+#____________________________________________________________________________________________________________________________________________   
     # get data from the CSV file for rendering root page
     @app.route("/applications", methods=["GET"])
     def get_data():
@@ -503,6 +553,164 @@ def create_app():
             return response, 200
         except:
             return jsonify({"error": "Internal server error"}), 500
+    
+
+
+    @app.route("/set_reminder/<int:application_id>", methods=["POST"])
+    def set_reminder(application_id):
+        print("Received application_id:############################################33", application_id)
+        console.log("Imhere1111111")
+        
+
+        try:
+            userid = get_userid_from_header()
+        
+
+            user = Users.objects(id=userid).first()
+            current_applications = user["applications"]
+
+            if len(current_applications) == 0:
+                return jsonify({"error": "No applications found"}), 400
+            
+            for application in current_applications:
+                if application["id"] == application_id:      
+                    wishlist_date = application.get('date')
+                    # Set up the reminder event in Google Calendar
+                    event = {
+                        'summary': 'Wishlist Reminder',
+                        'description': 'Reminder for wishlist item',
+                        'start': {
+                            'dateTime': wishlist_date.isoformat(),
+                            'timeZone': 'America/New_York',  # Set your timezone here
+                        },
+                        'end': {
+                            'dateTime': (wishlist_date + timedelta(hours=1)).isoformat(),
+                            'timeZone': 'America/New_York',  # Set your timezone here
+                        },
+                    }
+
+        
+
+                    calendar_id = 'primary'  # or use your specific calendar ID
+
+            #     # Insert the event
+                    created_event = service.events().insert(calendarId=calendar_id, body=event).execute()
+
+                    return jsonify({'message': 'Reminder set successfully!', 'event_id': created_event['id']})
+        except:
+
+            return jsonify({"error": "Internal server error"}), 500
+    
+    def generate_pdf(data):
+        doc = Document()
+
+        # Set page margins to fit within one page
+        sections = doc.sections
+        for section in sections:
+            section.left_margin = Pt(36)  # 0.5 inch
+            section.right_margin = Pt(36)  # 0.5 inch
+            section.top_margin = Pt(36)  # 0.5 inch
+            section.bottom_margin = Pt(36)  # 0.5 inch
+
+        # Helper function to add heading with format
+        def add_heading_with_format(doc, text, font_size=16, is_bold=True):
+            p = doc.add_paragraph()
+            run = p.add_run(text)
+            if is_bold:
+                run.bold = True
+            p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            run.font.size = Pt(font_size)
+
+        # Function to add details section
+        def add_details_section(doc, section_title, details, is_bold_title=True):
+            if section_title:
+                add_heading_with_format(doc, section_title, font_size=14, is_bold=True)
+            for detail in details:
+                for key, value in detail.items():
+                    if key == "company":
+                        p = doc.add_paragraph()
+                        run = p.add_run(value)
+                        run.bold = True
+                        p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+                    elif key == "project_title":
+                        # Add the value of "project_title" with bold formatting
+                        p = doc.add_paragraph()
+                        run = p.add_run(value)
+                        run.bold = True
+                        p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+                    elif key == "descriptionc":
+                        # Add the value of "descriptionc" without "descriptionc" prefix
+                        doc.add_paragraph(value, style="List Bullet")
+                    elif key != "descriptionc" and key != "level" and key != "extracurricularActivities":
+                        if key == "university":
+                            # Add the value of "university" with bold formatting and without a bullet
+                            p = doc.add_paragraph()
+                            run = p.add_run("University: " + value)
+                            run.bold = True
+                            p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+                        else:
+                            doc.add_paragraph(f"{value}", style="List Bullet")
+
+        # Title
+        add_heading_with_format(doc, "Resume", font_size=18, is_bold=True)
+
+        # Contact Information
+        add_heading_with_format(doc, "Contact Information", font_size=16, is_bold=True)
+        doc.add_paragraph("Name: " + data["name"])
+        doc.add_paragraph("Address: " + data["address"])
+        doc.add_paragraph("Email: " + data["email"])
+        doc.add_paragraph("LinkedIn: " + data["linkedin"])
+        doc.add_paragraph("Phone: " + data["phone"])
+
+        # Education section
+        add_details_section(doc, "Education", data["education"])
+
+        # Skills section
+        skills = data["skills"]
+        skills_text = ", ".join(skill["skills"] for skill in skills)
+        add_heading_with_format(doc, "Skills", font_size=14, is_bold=True)
+        doc.add_paragraph(skills_text, style="List Bullet")
+
+        # Work Experience section
+        add_heading_with_format(doc, "Work Experience", font_size=16, is_bold=True)
+        for entry in data["workExperience"]:
+            add_details_section(doc, "", [entry], is_bold_title=False)  # Removed the "Work Entry" heading
+
+        # Projects section
+        add_heading_with_format(doc, "Projects", font_size=16, is_bold=True)
+        for project in data["projects"]:
+            add_details_section(doc, "", [project], is_bold_title=False)  # Removed repeated "Project" heading
+
+        # Save the document to a .docx file
+
+        word_buffer = BytesIO()
+        output_file_path = "generated_resume.docx"
+        doc.save(word_buffer)
+        word_buffer.seek(0)
+
+        return word_buffer
+
+
+    @app.route('/resumebuilder', methods=['POST'])
+    def form_builder():
+        try:
+            # Assuming the request data is in JSON format
+            data = request.json
+
+            # Log the data (you can customize this part)
+            print("Received Form Data:")
+            for key, value in data.items():
+                print(f"{key}: {value}")
+
+            # Generate PDF
+            pdf_data = generate_pdf(data)
+
+            # Send the PDF file as a response
+            return send_file(pdf_data, mimetype='application/msword', as_attachment=True,
+                            attachment_filename='generated_resume.docx')
+        except Exception as e:
+            print(f"Error processing form data: {str(e)}")
+            return "Error processing form data", 500
 
     return app
 
@@ -514,7 +722,7 @@ with open("application.yml") as f:
     password = info["password"]
     app.config["MONGODB_SETTINGS"] = {
         "db": "appTracker",
-        "host": f"mongodb+srv://{username}:{password}@applicationtracker.p70m6nv.mongodb.net/?retryWrites=true&w=majority",
+        "host": "mongodb://localhost:27017/",
     }
 db = MongoEngine()
 db.init_app(app)
