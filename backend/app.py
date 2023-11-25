@@ -326,14 +326,14 @@ def create_app():
         page = requests.get(url, headers=headers)
         soup = BeautifulSoup(page.text, "html.parser")
 
-        job_data = pd.DataFrame(columns=["Job_Title", "Company_Name", "Location", "Date"])
+        job_data = pd.DataFrame(columns=["jobTitle", "companyName", "location", "date","qualifications", "responsibilities", "benefits"])
         job_divs = soup.find_all("div", class_="PwjeAc")
 
         for index, div in enumerate(job_divs):
-            job_data.at[index, "Job_Title"] = div.find("div", {"class": "BjJfJf PUpOsf"}).text
-            job_data.at[index, "Company_Name"] = div.find("div", {"class": "vNEEBe"}).text
-            job_data.at[index, "Location"] = div.find("div", {"class": "Qk80Jf"}).text
-            job_data.at[index, "Date"] = div.find_all("span", {"class": "LL4CDc"}, limit=1)[0].text
+            job_data.at[index, "jobTitle"] = div.find("div", {"class": "BjJfJf PUpOsf"}).text
+            job_data.at[index, "companyName"] = div.find("div", {"class": "vNEEBe"}).text
+            job_data.at[index, "location"] = div.find("div", {"class": "Qk80Jf"}).text
+            job_data.at[index, "date"] = div.find_all("span", {"class": "LL4CDc"}, limit=1)[0].text
 
             # Collect Job Description Details
             desc_elements = div.find_all("div", {"class": "JxVj3d"})
