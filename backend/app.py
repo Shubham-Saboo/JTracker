@@ -30,10 +30,10 @@ import certifi
 import requests
 
 import smtplib
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from authlib.integrations.flask_client import OAuth
-from authlib.common.security import generate_token
+# from google.oauth2 import service_account
+# from googleapiclient.discovery import build
+# from authlib.integrations.flask_client import OAuth
+# from authlib.common.security import generate_token
 from fake_useragent import UserAgent
 
 
