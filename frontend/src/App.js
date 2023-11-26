@@ -9,7 +9,7 @@ import LoginPage from "./login/LoginPage";
 import ManageResumePage from "./resume/ManageResumePage";
 import JobRecommendPage from "./jobRec/JobRecommendPage";
 import ResumeBuilder from "./resume/ResumeBuilder";
-
+import Navbar from "./component/Navbar";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ export default class App extends React.Component {
       LoginPage: <LoginPage />,
       ManageResumePage: <ManageResumePage />,
       JobRecommendPage: <JobRecommendPage />,
-      ResumeBuilder:<ResumeBuilder/>
+      ResumeBuilder: <ResumeBuilder />,
     };
     this.state = {
       currentPage: <LoginPage />,
@@ -63,16 +63,25 @@ export default class App extends React.Component {
         <div className="main-page">
           <Sidebar switchPage={this.switchPage.bind(this)} />
           <div className="main">
+            <div>
+              <Navbar />
+            </div>
             <div className="content">
               <div className="">
-                <h1 className="text-center">My applications</h1>
+                {/* <h1 className="text-center">My Applications</h1> */}
                 {/* <span className="btn-icon ">
                 <button className="btn btn-danger btn-icon"><i className="fas fa-plus"></i>&nbsp;New</button>
               </span> */}
               </div>
               {this.state.currentPage}
               <button
-                style={{ position: "absolute", top: "2vh", left: "90vw" }}
+                style={{
+                  position: "absolute",
+                  top: "3.85vh",
+                  left: "90vw",
+                  // marginRight: "500px",
+                  backgroundColor: "#009970",
+                }}
                 onClick={this.handleLogout}
               >
                 Logout
@@ -86,14 +95,10 @@ export default class App extends React.Component {
         <div className="main-page">
           <div className="main">
             <div className="content">
-              <h1 className="text-center" style={{ padding: 0.4 + "em" }}>
-                My applications
-              </h1>
-              <div className="">
-                {/* <span className="btn-icon ">
-              <button className="btn btn-danger btn-icon"><i className="fas fa-plus"></i>&nbsp;New</button>
-            </span> */}
-              </div>
+              {/* <h1 className="text-center" style={{ padding: 0.4 + "em" }}>
+                My Applications
+              </h1> */}
+              <div className=""></div>
               <LoginPage side={this.sidebarHandler} />
             </div>
           </div>
