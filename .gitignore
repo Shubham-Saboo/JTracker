@@ -5,6 +5,8 @@
 .DS_Store
 package-lock 3.json
 frontend/yarn.lock
+frontend/package-lock.json
+frontend/package.json
 
 # Log file
 *.log
