@@ -10,6 +10,7 @@ import ManageResumePage from "./resume/ManageResumePage";
 import JobRecommendPage from "./jobRec/JobRecommendPage";
 import ResumeBuilder from "./resume/ResumeBuilder";
 import Navbar from "./component/Navbar";
+import UserProfile from './profile/ProfilePage';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,7 @@ export default class App extends React.Component {
       ManageResumePage: <ManageResumePage />,
       JobRecommendPage: <JobRecommendPage />,
       ResumeBuilder: <ResumeBuilder />,
+      UserProfile: <UserProfile />,
     };
     this.state = {
       currentPage: <LoginPage />,
