@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../static/applicationCss.css";
 //import toast, { Toaster } from 'react-hot-toast';
+import { FaEnvelope } from "react-icons/fa";
 
 const date = [
   {
@@ -35,7 +36,6 @@ class Card extends Component {
     };
   }
 
-  
   handleAddToCalendar = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -48,17 +48,15 @@ class Card extends Component {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Credentials': 'true',
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Credentials": "true",
           },
         }
       );
       if (response.ok) {
-      
         alert("Email Reminder set!!");
         //toast("Reminder added to calendar!");
-
       } else {
         console.error("Failed to set reminder");
       }
@@ -78,40 +76,60 @@ class Card extends Component {
         key={this.state.id + "_card"}
         onClick={this.state.showEditModal}
       >
-        <div className="card-body bg-c-pink order-card">
+        <div className="card-body order-card">
           <div className="card-action">
-            <h6 className="card-title m-b-20" onClick={this.stopPropagation}>
+            <h6
+              className="card-title m-b-20"
+              onClick={this.stopPropagation}
+              style={{ color: "black" }}
+            >
               {this.props.application.jobTitle}
             </h6>
           </div>
           <p
             className="small-content-text small-text m-b-0"
             key={this.props.application.companyName}
+            style={{ color: "black" }}
           >
             {this.props.application.companyName}
             <br />
             {dateType.wordOfDate}: {this.props.application.date}
             <br />
             {/* Conditionally render Add to Calendar link */}
-            {isApplyBy && (
-                <a href="#" onClick={this.handleAddToCalendar}>
-                  Add to Calendar
-                </a>
-            )}
             Location: {this.props.application.location}
           </p>
-          <a
-            href={this.props.application.jobLink}
-            class="btn btn-info"
-            role="button"
-            style={{
-              justifyContent: "center",
-              display: "flex",
-              backgroundColor: "#009970",
-            }}
-          >
-            Job Link
-          </a>
+          <div style={{ display: "flex" }}>
+            <a
+              href={this.props.application.jobLink}
+              class="btn btn-info"
+              role="button"
+              style={{
+                justifyContent: "center",
+                display: "flex",
+                backgroundColor: "#009970",
+                flex: "1",
+              }}
+            >
+              Job Link
+            </a>
+            {isApplyBy && (
+              <a
+                href="#"
+                onClick={this.handleAddToCalendar}
+                style={{
+                  flex: "0 0 50px",
+                  borderRadius: "80px",
+                  display: "inline-block",
+                  boxShadow: "0 0 2px #888",
+                  padding: "0.5em 0.6em",
+                  backgroundColor: "#009970",
+                  color: "white",
+                }}
+              >
+                <FaEnvelope />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     );
