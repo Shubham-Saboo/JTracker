@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "../static/applicationCss.css";
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-// // Place this line at the top level of your component or entry point
-// toast.configure();
+import toast, { Toaster } from 'react-hot-toast';
 
 const date = [
   {
@@ -35,37 +31,37 @@ class Card extends Component {
 
     this.state = {
       showEditModal: props.showEditModal,
+      reminderAdded: false,
     };
   }
 
-  stopPropagation(e) {
+  
+  handleAddToCalendar = async (e) => {
+    e.preventDefault();
     e.stopPropagation();
-  }
-  handleAddToCalendar = async () => {
     console.log("I'm here");
-    const application_id = this.props.application.id; // Ensure this prop exists
+    const application_id = this.props.application.id;
     try {
       const response = await fetch(
-        `http://127.0.0.1:3000/set_reminder/${application_id}`,
+        `http://localhost:5000/set_reminder/${application_id}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': 'true',
           },
-          // Add any additional headers or credentials if required
         }
       );
       if (response.ok) {
-        // Handle success, e.g., show a success message
         console.log("Reminder set successfully!");
-        //toast.success("Reminder set successfully!");
+        toast("Reminder added to calendar!");
+
       } else {
-        // Handle error, e.g., show an error message
         console.error("Failed to set reminder");
-        //toast.error("Failed to set reminder");
       }
     } catch (error) {
-      // Handle fetch error, e.g., show a generic error message
       console.error("Error:", error);
     }
   };
@@ -81,6 +77,7 @@ class Card extends Component {
         key={this.state.id + "_card"}
         onClick={this.state.showEditModal}
       >
+        <Toaster />
         <div className="card-body bg-c-pink order-card">
           <div className="card-action">
             <h6 className="card-title m-b-20" onClick={this.stopPropagation}>
@@ -97,18 +94,10 @@ class Card extends Component {
             <br />
             {/* Conditionally render Add to Calendar link */}
             {isApplyBy && (
-              <a href="#" onClick={this.handleAddToCalendar}>
-                Add to Calendar
-              </a>
+                <a href="#" onClick={this.handleAddToCalendar}>
+                  Add to Calendar
+                </a>
             )}
-            {/* <a
-              href={this.props.application.jobLink}
-              target="_blank"
-              rel="noreferrer"
-              onClick="event.stopPropagation();"
-            >
-              {this.props.application.jobLink}
-            </a> */}
             Location: {this.props.application.location}
           </p>
           <a
@@ -125,27 +114,6 @@ class Card extends Component {
           </a>
         </div>
       </div>
-
-      //  <>
-      //   <div className="container">
-      //     <div className="row">
-      //       <div className="col-md-4 col-xl-3" key={this.state.id + '_card'} onClick={this.state.showEditModal}>
-      //         <div className="card bg-c-blue order-card">
-      //           <div className="card-block">
-      //             <h6 className="m-b-20" onClick={this.stopPropagation}>{this.props.application.jobTitle}</h6>
-      //             <h2 className="text-right">
-      //               <i className="fa fa-cart-plus f-left" />
-      //               <span>486</span>
-      //             </h2>
-      //             <p className="m-b-0">
-      //               Completed Orders<span className="f-right">351</span>
-      //             </p>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </>
     );
   }
 }

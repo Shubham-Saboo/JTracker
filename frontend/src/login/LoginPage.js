@@ -57,11 +57,12 @@ export default class LoginPage extends Component{
          
     }
 
-    handleSignup = (fullname, uname, pwd, skills, education, workExperience) => {
+    handleSignup = (fullname, uname, pwd, email, skills, education, workExperience) => {
         console.log("Signup click");
         console.log(skills);
         let obj = {
             username: uname,
+            email: email,
             password: pwd,
             fullName: fullname,
             skills: skills,
@@ -115,6 +116,11 @@ export default class LoginPage extends Component{
                             <div className="form-group">
                                 <label>Username</label>
                                 <input type="text" className="form-control" id="suname" placeholder="Enter username" />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input type="text" className="form-control" id="email" placeholder="Enter Email Id" />
                             </div>
 
                             <div className="form-group">
@@ -215,6 +221,7 @@ export default class LoginPage extends Component{
                                 let name = document.querySelector("#fullname").value
                                 let uname = document.querySelector("#suname").value
                                 let pwd = document.querySelector("#spwd").value
+                                let email = document.querySelector("#email").value
 
                                 // Fetch skills
                                 const skills = Array.from(document.querySelectorAll(".skillsInput")).map(input => input.value);
@@ -225,7 +232,7 @@ export default class LoginPage extends Component{
                                 // Fetch work experience details
                                 const workExperience = Array.from(document.querySelectorAll(".workExperienceInput")).map(input => input.value);
 
-                                this.handleSignup(name, uname, pwd, skills, education, workExperience);
+                                this.handleSignup(name, uname, pwd, email, skills, education, workExperience);
                                 //this.handleSignup(name, uname, pwd)
                                 }}  className="btn btn-secondary btn-block">Sign Up</button>
                         </form>

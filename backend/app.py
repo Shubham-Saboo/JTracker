@@ -41,7 +41,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact"]
+existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact","/set_reminder"]
 
 user_agent = UserAgent()
 def create_app():
@@ -232,6 +232,7 @@ def create_app():
                 id=get_new_user_id(),
                 fullName=data["fullName"],
                 username=data["username"],
+                email=data["email"]
                 skills= data["skills"],
                 education= data["education"],
                 workExperience= data["workExperience"],
@@ -796,6 +797,7 @@ class Users(db.Document):
     fullName = db.StringField()
     username = db.StringField()
     password = db.StringField()
+    email = db.StringField()
     skills = db.ListField()
     workExperience = db.ListField()
     education = db.ListField()
