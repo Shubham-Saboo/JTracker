@@ -682,7 +682,7 @@ def create_app():
                     return jsonify({'message': 'Reminder set successfully!', 'event_id': created_event['id']})
         except:
 
-            return jsonify({"error": "Internal server error"}), 500
+            return jsonify({"error": "Internal server error"}), 200
     
     def generate_pdf(data):
         doc = Document()
