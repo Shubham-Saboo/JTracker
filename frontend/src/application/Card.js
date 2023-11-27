@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import "../static/applicationCss.css";
+// import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+
+// // Place this line at the top level of your component or entry point
+// toast.configure();
+
 const date = [
   {
     class: "1",
@@ -52,9 +58,11 @@ class Card extends Component {
       if (response.ok) {
         // Handle success, e.g., show a success message
         console.log("Reminder set successfully!");
+        //toast.success("Reminder set successfully!");
       } else {
         // Handle error, e.g., show an error message
         console.error("Failed to set reminder");
+        //toast.error("Failed to set reminder");
       }
     } catch (error) {
       // Handle fetch error, e.g., show a generic error message

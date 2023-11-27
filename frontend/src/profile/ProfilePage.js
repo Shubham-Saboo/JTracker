@@ -21,6 +21,8 @@ const UserProfile = () => {
                 console.error('Error fetching application statistics:', error);
             });
     }, []);
+
+    console.log('Print profile data')
     console.log(profiledata)
 
     const formatSkills = () => {
@@ -70,9 +72,31 @@ const UserProfile = () => {
                         <Typography variant="h4">User Profile</Typography>
                         <Typography variant="body1">Full Name: {profiledata.fullname}</Typography>
                         <Typography variant="body1">Username: {profiledata.username}</Typography>
-                        <Typography variant="body1">Skills: {profiledata.skills}</Typography>
-                        <Typography variant="body1">Education: {profiledata.edu}</Typography>
-                        <Typography variant="body1">Work Experience: {profiledata.workExp}</Typography>
+                        <Typography variant="body1">
+                            Skills:
+                            <ul>
+                                {profiledata?.skills && profiledata.skills.map(skill => (
+                                    <li key={skill}>{skill}</li>
+                                ))}
+                            </ul>
+                        </Typography>
+                        <Typography variant="body1">
+                            Education:
+                            <ul>
+                                {profiledata?.edu && profiledata.edu.map(edu => (
+                                    <li key={edu}>{edu}</li>
+                                ))}
+                            </ul>
+                        </Typography>
+                        <Typography variant="body1">
+                            Work Experience:
+                            <ul>
+                                {profiledata?.workExp && profiledata.workExp.map(workExp => (
+                                    <li key={workExp}>{workExp}</li>
+                                ))}
+                            </ul>
+                        </Typography>
+
                         {/* Display other user information */}
                     </CardContent>
                 </Card>
