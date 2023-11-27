@@ -166,10 +166,14 @@ export default class SearchPage extends Component {
               <TextField
                 id='searchText'
                 label='Keyword'
-                variant='outlined'
+                variant='standard'   
                 fullWidth
                 value={searchText}
                 onChange={this.handleChange.bind(this)}
+                InputProps={{
+                  disableUnderline: true, // This removes the underline
+                  style: { borderBottom: 'none' }, // Additionally, you can set styles here
+                }}
               />
             </Grid>
             <Grid item xs={12} md={5}>
