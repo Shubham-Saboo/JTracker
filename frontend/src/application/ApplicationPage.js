@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Card from './Card'
 import CardModal from './CardModal'
 import $ from 'jquery'
+import AddIcon from '@mui/icons-material/Add';
 
 export default class CardBoard extends Component {
   constructor (props) {
@@ -182,7 +183,7 @@ export default class CardBoard extends Component {
           {/* add function not implement */}
           <div className='card card-col'>
             <div className='card-body new-col' onClick={this.showEditModal.bind(this, { class: v.class }, 'create')}>
-              <i className='fas fa-plus text-center' />
+            <AddIcon className='text-center' /> 
             </div>
           </div>
         </div>
