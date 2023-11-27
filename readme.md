@@ -168,6 +168,7 @@ Any details in any table can be modified at any time during the process.
 - Node.js
 - Flask
 - MongoDB
+- React
 
 ## Installation:
 
@@ -258,9 +259,9 @@ The project is licensed under the [MIT](https://choosealicense.com/licenses/mit/
 
 Please see our CONTRIBUTING.md for instructions on how to contribute to the repository and assist us in improving the project.
 
-## Team Members (Group 16)
+## Team Members (Group 53)
 
-- Arjit Agarwal
-- Mark Feng
-- Reuben Thomas
-- Sumedh Deepak Patkar
+- Shubham Amit Saboo
+- Vibhav Deo
+- Rajat Chandak
+- Chinmay Nayak
