@@ -29,6 +29,9 @@ import json
 import certifi
 import requests
 
+import schedule
+from threading import Thread
+import time
 import smtplib
 # from google.oauth2 import service_account
 # from googleapiclient.discovery import build
@@ -42,6 +45,42 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact","/set_reminder"]
+
+
+def reminder_email():
+    """
+    reminder_email() will send a reminder to users for doing their workout.
+    """
+    with app.app_context():
+        try:
+            time.sleep(10)
+            print('in send mail')
+            recipientlst = list(mongo.db.user.distinct('email'))
+            print(recipientlst)
+            
+            server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+            sender_email = "burnoutapp2023@gmail.com"
+            sender_password = "jgny mtda gguq shnw"
+
+            server.login(sender_email,sender_password)
+            message = 'Subject: Daily Reminder to Exercise'
+            for e in recipientlst:
+                print(e)
+                server.sendmail(sender_email,e,message)                
+            server.quit()        
+        except KeyboardInterrupt:
+            print("Thread interrupted")
+
+schedule.every().day.at("08:00").do(reminder_email)
+
+# Run the scheduler
+def schedule_process():
+    while True:
+        schedule.run_pending()
+        time.sleep(10)
+
+Thread(target=schedule_process).start()
+
 
 user_agent = UserAgent()
 def create_app():
@@ -183,7 +222,6 @@ def create_app():
         fullname = user["fullName"]
         email = user["email"]
         skills = user["skills"]
-        skills = '\n'.join('\t'.join(skills[i:i + 2]) for i in range(0, len(skills), 2))
         workex = user["workExperience"]
         edu = user["education"]
 
