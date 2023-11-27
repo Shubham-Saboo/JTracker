@@ -10,7 +10,8 @@ import ManageResumePage from "./resume/ManageResumePage";
 import JobRecommendPage from "./jobRec/JobRecommendPage";
 import ResumeBuilder from "./resume/ResumeBuilder";
 import Navbar from "./component/Navbar";
-import UserProfile from './profile/ProfilePage';
+import UserProfile from './profile/ProfilePage';import Chatbot from "./ChatBot/Chatbot";
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,8 @@ export default class App extends React.Component {
       JobRecommendPage: <JobRecommendPage />,
       ResumeBuilder: <ResumeBuilder />,
       UserProfile: <UserProfile />,
+      Chatbot: <Chatbot/>
+
     };
     this.state = {
       currentPage: <LoginPage />,
@@ -88,8 +91,11 @@ export default class App extends React.Component {
               >
                 Logout
               </button>
+              
             </div>
+          
           </div>
+          <Chatbot/>
         </div>
       );
     } else {
@@ -103,9 +109,13 @@ export default class App extends React.Component {
               <div className=""></div>
               <LoginPage side={this.sidebarHandler} />
             </div>
+            
           </div>
+        
         </div>
-      );
+        
+      )
+      ;
     }
     return app;
   }
