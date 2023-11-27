@@ -8,17 +8,28 @@ import BuildIcon from "@mui/icons-material/Build";
 import PersonIcon from "@mui/icons-material/Person";
 import Logo from "../static/logo.png"; // Import your logo here
 import DescriptionIcon from '@mui/icons-material/Description';
+
 const iconMap = {
   ApplicationPage: <DashboardIcon />,
   SearchPage: <SearchIcon />,
-  ManageResumePage: <FolderIcon />,
   JobRecommendPage: <LocationOnIcon />,
+  ManageResumePage: <FolderIcon />,
   ResumeBuilder: <BuildIcon />,
+  CoverLetter: <DescriptionIcon />,
   UserProfile: <PersonIcon />,
-  CoverLetter: <DescriptionIcon />
 };
 
 export default class Sidebar extends Component {
+  tabNames = {
+    ApplicationPage: 'Applications',
+    SearchPage: 'Job Search',
+    ManageResumePage: 'Manage Resume',
+    JobRecommendPage: 'Job Recommender',
+    ResumeBuilder: 'Resume Builder',
+    UserProfile: 'Profile',
+    CoverLetter: 'Cover Letter Builder',
+  };
+
   render() {
     return (
       <Drawer variant="permanent" sx={{ backgroundColor: "rgba(125, 87, 243, 0.8)" }}>
@@ -32,7 +43,7 @@ export default class Sidebar extends Component {
             <React.Fragment key={page}>
               <ListItem button onClick={() => this.props.switchPage(page)} sx={{ padding: "12px 24px" }}>
                 <ListItemIcon>{iconMap[page]}</ListItemIcon>
-                <ListItemText primary={page} />
+                <ListItemText primary={this.tabNames[page]} /> {/* Displaying custom names */}
               </ListItem>
               {index !== Object.keys(iconMap).length - 1 && <Divider />} {/* Add Divider between items */}
             </React.Fragment>
