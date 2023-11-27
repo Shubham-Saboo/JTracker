@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../static/applicationCss.css";
-import toast, { Toaster } from 'react-hot-toast';
+//import toast, { Toaster } from 'react-hot-toast';
 
 const date = [
   {
@@ -31,7 +31,7 @@ class Card extends Component {
 
     this.state = {
       showEditModal: props.showEditModal,
-      reminderAdded: false,
+      //reminderAdded: false,
     };
   }
 
@@ -56,7 +56,7 @@ class Card extends Component {
       );
       if (response.ok) {
         console.log("Reminder set successfully!");
-        toast("Reminder added to calendar!");
+        //toast("Reminder added to calendar!");
 
       } else {
         console.error("Failed to set reminder");
@@ -77,7 +77,6 @@ class Card extends Component {
         key={this.state.id + "_card"}
         onClick={this.state.showEditModal}
       >
-        <Toaster />
         <div className="card-body bg-c-pink order-card">
           <div className="card-action">
             <h6 className="card-title m-b-20" onClick={this.stopPropagation}>
