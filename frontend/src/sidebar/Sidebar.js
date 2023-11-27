@@ -7,7 +7,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import BuildIcon from "@mui/icons-material/Build";
 import PersonIcon from "@mui/icons-material/Person";
 import Logo from "../static/logo.png"; // Import your logo here
-
+import DescriptionIcon from '@mui/icons-material/Description';
 const iconMap = {
   ApplicationPage: <DashboardIcon />,
   SearchPage: <SearchIcon />,
@@ -15,7 +15,7 @@ const iconMap = {
   JobRecommendPage: <LocationOnIcon />,
   ResumeBuilder: <BuildIcon />,
   UserProfile: <PersonIcon />,
-  CoverLetter: <BuildIcon/>
+  CoverLetter: <DescriptionIcon />
 };
 
 export default class Sidebar extends Component {
