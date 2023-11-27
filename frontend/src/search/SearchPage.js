@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 import SearchCard from './SearchCard'
+import { Button,Grid, TextField, Select, MenuItem, Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
+
 
 const columns = [
   {
@@ -22,14 +24,17 @@ const columns = [
 ]
 
 export default class SearchPage extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       searchText: '',
       rows: [],
       salary: '',
-      addedList: []
-    }
+      addedList: [],
+      showModal: false,
+      job: null,
+      modalMode: null,
+    };
   }
 
   search () {
@@ -132,14 +137,14 @@ export default class SearchPage extends Component {
     this.setState({ [event.target.id]: event.target.value })
   }
 
-  setSalary (event) {
-    this.setState({ [event.target.id]: event.target.value })
+  setSalary(event) {
+    this.setState({ salary: event.target.value });
   }
 
   render () {
-    const rows = this.state.rows
+    const { rows, searchText, salary } = this.state;
 
-    let applicationModal = null
+    let applicationModal = null;
     if (this.state.job) {
       applicationModal = (
         <SearchCard
@@ -150,78 +155,109 @@ export default class SearchPage extends Component {
           handleCloseEditModal={this.handleCloseEditModal.bind(this)}
           deleteApplication={this.deleteTheApplication.bind(this)}
         />
-      )
+      );
     }
 
     return (
       <div>
         <div className='container'>
-          <div className='row'>
-            <div className='col-5 input-group mb-3'>
-              <input type='text' id='searchText' className='form-control' placeholder='Keyword' aria-label='Username' aria-describedby='basic-addon1' value={this.state.searchText} onChange={this.handleChange.bind(this)} />
-            </div>
-            <div className='col-5 mb-3' style={{ padding: 0.4 + 'em' }}>
-              <label>Salary Range Per Annum :  </label>
-              <select name='salary' id='salary' onChange={this.setSalary.bind(this)} value={this.state.salary}>
-                <option value=''>Please select salary range</option>
-                <option value='$50K'>$0K - $50K</option>
-                <option value='$75K'>$51K - $100K</option>
-                <option value='$125K'>$101K - $150K</option>
-                <option value='$175K'>$151K - $200K</option>
-              </select>
-            </div>
-            <div>
-              <button type='button' className='btn btn-secondary' onClick={this.search.bind(this)}>Search</button>
-            </div>
-          </div>
+          <Grid container spacing={2} alignItems='center'>
+            <Grid item xs={12} md={5}>
+              <TextField
+                id='searchText'
+                label='Keyword'
+                variant='outlined'
+                fullWidth
+                value={searchText}
+                onChange={this.handleChange.bind(this)}
+              />
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Select
+                name='salary'
+                id='salary'
+                value={salary}
+                onChange={this.setSalary.bind(this)}
+                variant='outlined'
+                fullWidth
+              >
+                <MenuItem value=''>
+                  <em>Please select salary range</em>
+                </MenuItem>
+                <MenuItem value='$50K'>$0K - $50K</MenuItem>
+                <MenuItem value='$75K'>$51K - $100K</MenuItem>
+                <MenuItem value='$125K'>$101K - $150K</MenuItem>
+                <MenuItem value='$175K'>$151K - $200K</MenuItem>
+              </Select>
+            </Grid>
+            <Grid item xs={12} md={2}>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={this.search.bind(this)}
+                fullWidth
+              >
+                Search
+              </Button>
+            </Grid>
+          </Grid>
         </div>
-        <table className='table'>
-          <thead>
-            <tr>
-              {columns.map(column => {
-                return <th key={column.id + '_th'}>{column.label}</th>
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map(row => {
-              return (
-                <tr key={row.id}>
-                  {columns.map(column => {
-                    const value = row[column.id]
-                    if (column.id !== 'func') {
-                      return <td key={column.id}>{value}</td>
-                    } else {
-                      const addButton = this.state.addedList.includes(row.id)
-                        ? <button type='button' className='btn btn-outline-secondary' onClick={this.removeFromWaitlist.bind(this, row)}> Added </button>
-                        : <button type='button' className='btn btn-secondary' onClick={this.showEditModal.bind(this, row)}> Add </button>
-                      return (
-                        <td key={row.id + '_func'}>
-                          <div className='container'>
-                            <div className='row'>
-                              <div className='col-md-4'>
-                                {addButton}
-                              </div>
-                                                    &nbsp;&nbsp;
-                              <div className='col-md-2'>
-                                <button type='button' style={{ backgroundColor: 'red' }} className='btn btn-secondary' onClick={this.deleteTheApplication.bind(this, row.id)}> Delete </button>
-                              </div>
-                            </div>
+        <Table>
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell key={column.id + '_th'}>{column.label}</TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                {columns.map((column) => (
+                  <TableCell key={column.id}>
+                    {column.id !== 'func' ? (
+                      row[column.id]
+                    ) : (
+                      <div className='container'>
+                        <div className='row'>
+                          <div className='col-md-4'>
+                            {this.state.addedList.includes(row.id) ? (
+                              <Button
+                                variant='outlined'
+                                onClick={this.removeFromWaitlist.bind(this, row)}
+                              >
+                                Added
+                              </Button>
+                            ) : (
+                              <Button
+                                variant='contained'
+                                onClick={this.showEditModal.bind(this, row)}
+                              >
+                                Add
+                              </Button>
+                            )}
                           </div>
-
-                        </td>
-                      )
-                    }
-                  })}
-
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-
+                          &nbsp;&nbsp;
+                          <div className='col-md-2'>
+                            <Button
+                              variant='contained'
+                              style={{ backgroundColor: 'red' }}
+                              onClick={this.deleteTheApplication.bind(this, row.id)}
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
         {applicationModal}
       </div>
-    )
+    );
   }
 }
