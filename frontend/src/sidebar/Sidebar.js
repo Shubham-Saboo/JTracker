@@ -1,36 +1,43 @@
 import React, { Component } from "react";
-import "@fortawesome/fontawesome-free/js/fontawesome";
-import "@fortawesome/fontawesome-free/css/fontawesome.css";
-import "@fortawesome/fontawesome-free/js/solid";
-import "@fortawesome/fontawesome-free/js/regular";
-import "@fortawesome/fontawesome-free/js/brands";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider } from "@mui/material";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import SearchIcon from "@mui/icons-material/Search";
+import FolderIcon from "@mui/icons-material/Folder";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import BuildIcon from "@mui/icons-material/Build";
+import PersonIcon from "@mui/icons-material/Person";
+import Logo from "../static/logo.png"; // Import your logo here
 
-import "../static/Sidebar.css";
+const iconMap = {
+  ApplicationPage: <DashboardIcon />,
+  SearchPage: <SearchIcon />,
+  ManageResumePage: <FolderIcon />,
+  JobRecommendPage: <LocationOnIcon />,
+  ResumeBuilder: <BuildIcon />,
+  UserProfile: <PersonIcon />,
+};
+
 export default class Sidebar extends Component {
   render() {
     return (
-      <div className="left-nav">
-        <div className="left-nav-item">
-          <div onClick={() => this.props.switchPage("ApplicationPage")}>
-            <i className="fas fa-columns left-nav-icon" />
-          </div>
-          <div onClick={() => this.props.switchPage("SearchPage")}>
-            <i className="fas fa-search left-nav-icon" />
-          </div>
-          <div onClick={() => this.props.switchPage("ManageResumePage")}>
-            <i className="fas fa-folder left-nav-icon"></i>
-          </div>
-          <div onClick={() => this.props.switchPage("JobRecommendPage")}>
-            <i class="fas fa-crosshairs left-nav-icon"></i>
-          </div>
-          <div onClick={() => this.props.switchPage("ResumeBuilder")}>
-            <i class="fas fa-tools left-nav-icon"></i>
-          </div>
-          <div onClick={() => this.props.switchPage("UserProfile")}>
-            <i class="fas fa-user left-nav-icon"></i>
-          </div>
+      <Drawer variant="permanent" sx={{ backgroundColor: "rgba(125, 87, 243, 0.8)" }}>
+        <div style={{ textAlign: "center", padding: "10px 0", color: "#fff" }}>
+          <img src={Logo} alt="Logo" style={{ width: "80px", marginBottom: "10px" }} />
+          <div>Application Name</div>
         </div>
-      </div>
+        <Divider />
+        <List sx={{ paddingTop: "16px" }}>
+          {Object.keys(iconMap).map((page, index) => (
+            <React.Fragment key={page}>
+              <ListItem button onClick={() => this.props.switchPage(page)} sx={{ padding: "12px 24px" }}>
+                <ListItemIcon>{iconMap[page]}</ListItemIcon>
+                <ListItemText primary={page} />
+              </ListItem>
+              {index !== Object.keys(iconMap).length - 1 && <Divider />} {/* Add Divider between items */}
+            </React.Fragment>
+          ))}
+        </List>
+      </Drawer>
     );
   }
 }

@@ -136,11 +136,21 @@ input:focus-visible {
 
 .main-page {
   display: flex;
-  flex-direction: row;
+  justify-content: center; /* Center-align the content horizontally */
   background-color: #ebf0f7;
 }
+
+.sidebar {
+  width: 250px;
+  flex: 0 0 auto;
+  z-index: 100;
+  margin-right: 20px; /* Add margin between sidebar and main content */
+}
+
 .main {
-  width: 95%;
+  flex: 1;
+  overflow: auto;
+  background-color: #ebf0f7;
 }
 .card-action {
   display: flex;

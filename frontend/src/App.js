@@ -66,7 +66,9 @@ export default class App extends React.Component {
     if (this.state.sidebar) {
       app = (
         <div className="main-page">
-          <Sidebar switchPage={this.switchPage.bind(this)} />
+          <div className="sidebar">
+            <Sidebar switchPage={this.switchPage.bind(this)} />
+          </div>
           <div className="main">
             <div>
               <Navbar />
