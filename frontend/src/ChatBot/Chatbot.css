@@ -5,12 +5,12 @@
   bottom: 40px;
   right: 40px;
   z-index: 999;
-  width: 350px; /* Initial width */
+  width: 50px; /* Initial smaller size */
   transition: width 0.3s ease-in-out;
 }
 
 .chatbot-container.open {
-  width: 450px; /* Expanded width when open */
+  width: 350px; /* Expanded size when open */
 }
 
 .chat-icon {
@@ -57,22 +57,10 @@
   font-size: 18px;
 }
 
-.chat-content {
-  position: relative;
-}
-
-.fixed-heading {
-  position: sticky;
-  top: 0;
-  background-color: #fff;
-  z-index: 1;
-}
-
 .chat-messages {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 20px; /* Adjust spacing from the fixed heading */
 }
 
 .message {
