@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import "../static/resume.css";
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box, Grid } from "@mui/material";
+import { CloudUpload, GetApp } from "@mui/icons-material";
 
 export default class ManageResumePage extends Component {
   constructor(props) {
@@ -105,49 +107,59 @@ export default class ManageResumePage extends Component {
 
   render() {
     return (
-      <form
-        class="pagelayout"
-        id="upload-file"
-        method="post"
-        encType="multipart/form-data"
-      >
-        <input
-          id="file"
-          name="file"
-          type="file"
-          onChange={this.handleChange.bind(this)}
-        ></input>
-        <button
-          id="upload-file-btn"
-          onClick={this.uploadResume.bind(this)}
-          type="button"
-        >
-          Upload
-        </button>
+      <Box mt={4} mx={2}>
+        <Grid container spacing={3} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            <input
+              id="file"
+              name="file"
+              type="file"
+              style={{ display: "none" }}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="file">
+              <Button
+                variant="contained"
+                component="span"
+                fullWidth
+                startIcon={<CloudUpload />}
+              >
+                Upload Resume
+              </Button>
+            </label>
+          </Grid>
+        </Grid>
 
-        <div style={{ margin: 2 + "em" }}></div>
-        <div>
-          <h2>Uploaded Documents</h2>
-          <table>
-            <tr>
-              <th class="tablecol1">Documents</th>
-              <th class="tablecol2">Actions</th>
-            </tr>
-            <tr>
-              <td class="tablecol1">{this.state.fileName}</td>
-              <td class="tablecol2">
-                <button
-                  id="download"
-                  onClick={this.downloadResume.bind(this)}
-                  type="button"
-                >
-                  Download
-                </button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </form>
+        <Box mt={4}>
+          <Typography variant="h5" gutterBottom>
+            Uploaded Documents
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Document</TableCell>
+                  <TableCell>Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>{this.state.fileName}</TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      startIcon={<GetApp />}
+                      onClick={this.downloadResume}
+                    >
+                      Download
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      </Box>
     );
   }
 }
