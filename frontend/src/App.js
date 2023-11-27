@@ -9,6 +9,7 @@ import LoginPage from "./login/LoginPage";
 import ManageResumePage from "./resume/ManageResumePage";
 import JobRecommendPage from "./jobRec/JobRecommendPage";
 import ResumeBuilder from "./resume/ResumeBuilder";
+import CoverLetter from "./resume/CoverLetter";
 import Navbar from "./component/Navbar";
 import UserProfile from './profile/ProfilePage';import Chatbot from "./ChatBot/Chatbot";
 
@@ -23,7 +24,8 @@ export default class App extends React.Component {
       JobRecommendPage: <JobRecommendPage />,
       ResumeBuilder: <ResumeBuilder />,
       UserProfile: <UserProfile />,
-      Chatbot: <Chatbot/>
+      Chatbot: <Chatbot/>,
+      CoverLetter:<CoverLetter/>
 
     };
     this.state = {
