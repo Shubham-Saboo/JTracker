@@ -514,16 +514,17 @@ def create_app():
                     user.resume.seek(0)
             except:
                 return jsonify({"error": "resume could not be found"}), 400
-            
+            print("I am here0")
             pdf_content = io.BytesIO(user.resume.read())
             load_pdf = PyPDF2.PdfReader(pdf_content)
             page_content = load_pdf.pages[0].extract_text()
-            prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the comapanies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
+            prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the companies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
             message = [ {"role": "system", "content": prompt} ]
             chat = openai.ChatCompletion.create( 
             model="gpt-3.5-turbo", messages=message
             ) 
             reply = chat.choices[0].message.content 
+            print(reply)
             return jsonify(reply), 200
         except:
             return jsonify({"error": "Internal server error"}), 500
@@ -747,6 +748,7 @@ def create_app():
             print(f"Error processing form data: {str(e)}")
             return "Error processing form data", 500
     
+<<<<<<< Updated upstream
     @app.route('/openai-interact', methods=['POST'])
     def openai_interact():
         try:
@@ -763,9 +765,77 @@ def create_app():
             return jsonify(chat)
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+=======
+    def generate_word(data):
+        doc = Document()
+        print("Imhere4")
+        # Set page margins to fit within one page
+        sections = doc.sections
+        for section in sections:
+            section.left_margin = Pt(36)  # 0.5 inch
+            section.right_margin = Pt(36)  # 0.5 inch
+            section.top_margin = Pt(36)  # 0.5 inch
+            section.bottom_margin = Pt(36)  # 0.5 inch
+
+        # Helper function to add heading with format
+        def add_heading_with_format(doc, text, font_size=16, is_bold=True):
+            p = doc.add_paragraph()
+            run = p.add_run(text)
+            if is_bold:
+                run.bold = True
+            p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            run.font.size = Pt(font_size)
+
+        
+        # Title
+        add_heading_with_format(doc, "Cover Letter", font_size=18, is_bold=True)
+
+        # Contact Information
+        add_heading_with_format(doc, "Contact Information", font_size=16, is_bold=True)
+        prompt = "Generate a cover letter for the role of" + data["role"] + " to apply in the company " + data["company"]+ " while highlighting my skills " + data["skill1"] + "and" + data["skill2"] 
+        message = [ {"role": "system", "content": prompt} ]
+        chat = openai.ChatCompletion.create( 
+        model="gpt-3.5-turbo", messages=message
+        ) 
+        reply = chat.choices[0].message.content
+        doc.add_paragraph(reply)
+        print("Imhere5")
+
+        # Save the document to a .docx file
+
+        word_buffer = BytesIO()
+        output_file_path = "generated_cover_letter.docx"
+        doc.save(word_buffer)
+        word_buffer.seek(0)
+        print("Imhere6")
+        return word_buffer
+
+    @app.route('/coverletter', methods=['POST'])
+    def form_builderr():
+        print("I m here322")
+        try:
+            # Assuming the request data is in JSON format
+            data = request.json
+            print("Imhere1")
+            # Log the data (you can customize this part)
+            print("Received Form Data:")
+            for key, value in data.items():
+                print(f"{key}: {value}")
+            
+            # Generate PDF
+            word_data = generate_word(data)
+            print("Imhere2")
+            # Send the PDF file as a response
+            return send_file(word_data, mimetype='application/msword', as_attachment=True,
+                            attachment_filename='generated_cover_letter.docx')
+            print("Imhere3")
+        except Exception as e:
+            print("Imhere")
+            print(f"Error processing form data: {str(e)}")
+            return "Error processing form data", 500
+>>>>>>> Stashed changes
 
     return app
-
 
 app = create_app()
 with open("application.yml") as f:
