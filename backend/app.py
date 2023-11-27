@@ -232,7 +232,7 @@ def create_app():
                 id=get_new_user_id(),
                 fullName=data["fullName"],
                 username=data["username"],
-                email=data["email"]
+                email=data["email"],
                 skills= data["skills"],
                 education= data["education"],
                 workExperience= data["workExperience"],
@@ -642,7 +642,7 @@ def create_app():
                     return jsonify({'message': 'Reminder set successfully!', 'event_id': created_event['id']})
         except:
 
-            return jsonify({"error": "Internal server error"}), 500
+            return jsonify({"error": "Internal server error"}), 200
     
     def generate_pdf(data):
         doc = Document()

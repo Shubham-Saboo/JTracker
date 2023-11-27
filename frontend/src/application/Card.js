@@ -55,7 +55,8 @@ class Card extends Component {
         }
       );
       if (response.ok) {
-        console.log("Reminder set successfully!");
+      
+        alert("Email Reminder set!!");
         //toast("Reminder added to calendar!");
 
       } else {
