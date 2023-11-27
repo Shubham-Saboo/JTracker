@@ -1,83 +1,92 @@
-// import React, { useState, useEffect, Component } from 'react';
-// import axios from 'axios';
-
-// const UserProfile = () => {
-//     // const [userData, setUserData] = useState({});
-//     const [profiledata, setprofiledata] = useState({});
-
-//     useEffect(() => {
-//         // Fetch application statistics
-//         axios.get('http://localhost:5000/users/profile')
-//             .then(response => {
-//                 setprofiledata(response.data);
-//             })
-//             .catch(error => {
-//                 console.error('Error fetching application statistics:', error);
-//             });
-//     }, []);
-
-//     return (
-//         <div>
-//             <h2>User Profile</h2>
-//             <div>
-//                 <h3>General Information</h3>
-//                 <p>Full Name: {profiledata.fullname}</p>
-//                 <p>Username: {profiledata.username}</p>
-//                 <h3>Application Statistics</h3>
-//                 <p>Wishlist: {profiledata.wishlist}</p>
-//                 <p>Applied: {profiledata.applied}</p>
-//                 <p>Waiting for Referral: {profiledata.waiting_for_referral}</p>
-//                 <p>Rejected: {profiledata.rejected}</p>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default UserProfile;
-
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import axios from 'axios';
 
-class UserProfile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            profiledata: {}
-        };
-    }
-
-    componentDidMount() {
-        // Fetch user profile data
-        axios.get('http://localhost:5000/users/profile')
+const UserProfile = () => {
+    // const [userData, setUserData] = useState({});
+    const [profiledata, setprofiledata] = useState({});
+    useEffect(() => {
+        const headers = {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Credentials": "true",
+          };
+        // Fetch application statistics
+        console.log('hersdasdsdasd')
+        axios.get('http://localhost:5000/users/profile', { headers })
             .then(response => {
-                this.setState({ profiledata: response.data });
-                console.log('Hi')
+                setprofiledata(response.data);
                 console.log(response.data)
             })
             .catch(error => {
-                console.error('Error fetching user profile:', error);
+                console.error('Error fetching application statistics:', error);
             });
-    }
+    }, []);
 
-    render() {
-        const { profiledata } = this.state;
-
-        return (
-            <div>
+    return (
+        <div className="profile-container">
+            {/* Left half: User information */}
+            <div className="user-info">
                 <h2>User Profile</h2>
-                <div>
-                    <h3>General Information</h3>
-                    <p>Full Name: {profiledata.fullname}</p>
-                    <p>Username: {profiledata.username}</p>
-                    <h3>Application Statistics</h3>
-                    <p>Wishlist: {profiledata.wishlist}</p>
-                    <p>Applied: {profiledata.applied}</p>
-                    <p>Waiting for Referral: {profiledata.waiting_for_referral}</p>
-                    <p>Rejected: {profiledata.rejected}</p>
+                <p>Full Name: {profiledata.fullname}</p>
+                <p>Username: {profiledata.username}</p>
+                {/* Display other user information */}
+            </div>
+
+            {/* Right half: Application Statistics */}
+            <div className="app-stats">
+                <h2>Application Statistics</h2>
+                <div className="card-container">
+                    <div className="card">
+                        <h3>Wishlist</h3>
+                        <p>{profiledata.wishlist}</p>
+                    </div>
+                    {/* Repeat the card structure for other application stats */}
+                    <div className="card">
+                        <h3>Applied</h3>
+                        <p>{profiledata.applied}</p>
+                    </div>
+                    <div className="card">
+                        <h3>Waiting for Referral</h3>
+                        <p>{profiledata.waiting_for_referral}</p>
+                    </div>
+                    <div className="card">
+                        <h3>Rejected</h3>
+                        <p>{profiledata.rejected}</p>
+                    </div>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+
+
+    // return (
+    //     <div>
+    //         <h2>User Profile</h2>
+    //         <div>
+    //             <h3>General Information</h3>
+    //             <p>Full Name: {profiledata.fullname}</p>
+    //             <p>Username: {profiledata.username}</p>
+    //             <h3>Application Statistics</h3>
+    //             <p>Wishlist: {profiledata.wishlist}</p>
+    //             <p>Applied: {profiledata.applied}</p>
+    //             <p>Waiting for Referral: {profiledata.waiting_for_referral}</p>
+    //             <p>Rejected: {profiledata.rejected}</p>
+    //         </div>
+    //     </div>
+    // );
+};
 
 export default UserProfile;
+
+// export default class UserProfile extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <h2>User Profile</h2>
+//                 <div>
+//                     <h3>General Information</h3>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
