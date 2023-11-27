@@ -41,7 +41,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-existing_endpoints = ["/applications", "/resume","/recommend"]
+existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact"]
 
 user_agent = UserAgent()
 def create_app():
@@ -716,6 +716,23 @@ def create_app():
         except Exception as e:
             print(f"Error processing form data: {str(e)}")
             return "Error processing form data", 500
+    
+    @app.route('/openai-interact', methods=['POST'])
+    def openai_interact():
+        try:
+            data = request.get_json()
+            prompt = data.get('prompt')
+            # Make a request to the OpenAI API using the provided prompt
+            #prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the comapanies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
+            message = [ {"role": "system", "content": prompt} ]
+            chat = openai.ChatCompletion.create( 
+            model="gpt-3.5-turbo", messages=message
+            ) 
+            
+            
+            return jsonify(chat)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
 
     return app
 

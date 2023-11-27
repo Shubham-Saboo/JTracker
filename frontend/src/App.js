@@ -9,6 +9,7 @@ import LoginPage from "./login/LoginPage";
 import ManageResumePage from "./resume/ManageResumePage";
 import JobRecommendPage from "./jobRec/JobRecommendPage";
 import ResumeBuilder from "./resume/ResumeBuilder";
+import Chatbot from "./ChatBot/Chatbot";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,7 +20,9 @@ export default class App extends React.Component {
       LoginPage: <LoginPage />,
       ManageResumePage: <ManageResumePage />,
       JobRecommendPage: <JobRecommendPage />,
-      ResumeBuilder:<ResumeBuilder/>
+      ResumeBuilder:<ResumeBuilder/>,
+      Chatbot: <Chatbot/>
+
     };
     this.state = {
       currentPage: <LoginPage />,
@@ -77,8 +80,11 @@ export default class App extends React.Component {
               >
                 Logout
               </button>
+              
             </div>
+          
           </div>
+          <Chatbot/>
         </div>
       );
     } else {
@@ -89,6 +95,7 @@ export default class App extends React.Component {
               <h1 className="text-center" style={{ padding: 0.4 + "em" }}>
                 My applications
               </h1>
+
               <div className="">
                 {/* <span className="btn-icon ">
               <button className="btn btn-danger btn-icon"><i className="fas fa-plus"></i>&nbsp;New</button>
@@ -96,9 +103,13 @@ export default class App extends React.Component {
               </div>
               <LoginPage side={this.sidebarHandler} />
             </div>
+            
           </div>
+        
         </div>
-      );
+        
+      )
+      ;
     }
     return app;
   }

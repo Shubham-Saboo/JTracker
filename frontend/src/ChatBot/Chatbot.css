@@ -1,0 +1,118 @@
+/* CSS for Chatbot with conversational structure */
+
+.chatbot-container {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 999;
+  width: 350px; /* Initial width */
+  transition: width 0.3s ease-in-out;
+}
+
+.chatbot-container.open {
+  width: 450px; /* Expanded width when open */
+}
+
+.chat-icon {
+  background-color: purple;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chat-icon.hidden {
+  display: none;
+}
+
+.chat-window {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  max-height: 400px; /* Adjust the height as needed */
+  overflow-y: auto;
+  display: none; /* Initially hidden */
+  padding: 10px; /* Add padding around the chat window */
+}
+
+.chat-window.open {
+  display: block; /* Display when open */
+}
+
+.chat-header {
+  background-color: purple;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-heading {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.chat-content {
+  position: relative;
+}
+
+.fixed-heading {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 20px; /* Adjust spacing from the fixed heading */
+}
+
+.message {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #d6eaf8;
+}
+
+.bot {
+  align-self: flex-start;
+  background-color: #e9ecef;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  background-color: purple;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
