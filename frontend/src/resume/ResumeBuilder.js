@@ -271,199 +271,271 @@ class ResumeBuilder extends Component {
               </div>
             </div>
           </div>
-          <h3>Education:</h3>
-          <div style={{ marginBottom: "10px" }}>
-            <button
-              type="button"
-              style={{ marginBottom: "10px", width: "150px" }}
-              onClick={() => this.handleAddSection("education")}
-            >
-              Add Education
-            </button>
-          </div>
-
-          {this.state.education.map((entry, index) => (
-            <div className="row" style={{ marginBottom: "10px" }} key={index}>
-              <label>University:</label>
-              <input
-                type="text"
-                value={entry.university || ""}
-                onChange={(e) =>
-                  this.handleInputChangeEducation(
-                    index,
-                    "university",
-                    e.target.value
-                  )
-                }
-              />
-
-              <label>Degree:</label>
-              <input
-                type="text"
-                value={entry.degree || ""}
-                onChange={(e) =>
-                  this.handleInputChangeEducation(
-                    index,
-                    "degree",
-                    e.target.value
-                  )
-                }
-              />
-
+          <div className="fcard">
+            <h3>Education:</h3>
+            <div style={{ marginBottom: "10px" }}>
               <button
                 type="button"
-                style={{ marginLeft: "10px", width: "100px" }}
-                onClick={() => this.handleRemoveSection("education", index)}
+                style={{
+                  marginBottom: "10px",
+                  width: "150px",
+                  margin: "auto",
+                  display: "flex",
+                }}
+                onClick={() => this.handleAddSection("education")}
               >
-                Remove
+                Add Education
               </button>
             </div>
-          ))}
+            <hr class=""></hr>
 
-          <h3>Skills:</h3>
-          <div style={{ marginBottom: "10px" }}>
-            <button
-              type="button"
-              style={{ marginBottom: "10px", width: "150px" }}
-              onClick={() => this.handleAddSection("skills")}
-            >
-              Add Skills
-            </button>
-          </div>
+            {this.state.education.map((entry, index) => (
+              <div
+                className="row"
+                style={{
+                  marginBottom: "10px",
+                  marginLeft: "50px",
+                  marginRight: "50px",
+                }}
+                key={index}
+              >
+                <label>University:</label>
+                <input
+                  type="text"
+                  value={entry.university || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeEducation(
+                      index,
+                      "university",
+                      e.target.value
+                    )
+                  }
+                />
 
-          {this.state.skills.map((entry, index) => (
-            <div className="row" style={{ marginBottom: "10px" }} key={index}>
-              <label>Skill:</label>
-              <input
-                type="text"
-                value={entry.skills || ""}
-                onChange={(e) =>
-                  this.handleInputChangeSkills(index, "skills", e.target.value)
-                }
-              />
+                <label>Degree:</label>
+                <input
+                  type="text"
+                  value={entry.degree || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeEducation(
+                      index,
+                      "degree",
+                      e.target.value
+                    )
+                  }
+                />
 
-              <label>Level:</label>
-              <input
-                type="text"
-                value={entry.level || ""}
-                onChange={(e) =>
-                  this.handleInputChangeSkills(index, "level", e.target.value)
-                }
-              />
+                <button
+                  type="button"
+                  style={{
+                    marginLeft: "10px",
+                    width: "100px",
+                  }}
+                  onClick={() => this.handleRemoveSection("education", index)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
 
+            <h3>Skills:</h3>
+            <div style={{ marginBottom: "10px" }}>
               <button
                 type="button"
-                style={{ marginLeft: "10px", width: "100px" }}
-                onClick={() => this.handleRemoveSection("skills", index)}
+                style={{
+                  marginBottom: "10px",
+                  width: "150px",
+                  margin: "auto",
+                  display: "flex",
+                }}
+                onClick={() => this.handleAddSection("skills")}
               >
-                Remove
+                Add Skills
               </button>
             </div>
-          ))}
+            <hr class=""></hr>
 
-          <h3>Work Experience:</h3>
-          <div style={{ marginBottom: "10px" }}>
-            <button
-              type="button"
-              style={{ marginBottom: "10px", width: "150px" }}
-              onClick={() => this.handleAddSection("workExperience")}
+            {this.state.skills.map((entry, index) => (
+              <div
+                className="row"
+                style={{
+                  marginBottom: "10px",
+                  marginLeft: "50px",
+                  marginRight: "50px",
+                }}
+                key={index}
+              >
+                <label>Skill:</label>
+                <input
+                  type="text"
+                  value={entry.skills || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeSkills(
+                      index,
+                      "skills",
+                      e.target.value
+                    )
+                  }
+                />
+
+                <label>Level:</label>
+                <input
+                  type="text"
+                  value={entry.level || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeSkills(index, "level", e.target.value)
+                  }
+                />
+
+                <button
+                  type="button"
+                  style={{ marginLeft: "10px", width: "100px" }}
+                  onClick={() => this.handleRemoveSection("skills", index)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <h3>Work Experience:</h3>
+            <div
+              style={{ marginBottom: "10px", margin: "auto", display: "flex" }}
             >
-              Add Additional
-            </button>
-          </div>
-
-          {this.state.workExperience.map((entry, index) => (
-            <div className="row" style={{ marginBottom: "10px" }} key={index}>
-              <label>Company:</label>
-              <input
-                type="text"
-                value={entry.company || ""}
-                onChange={(e) =>
-                  this.handleInputChangeWorkExp(
-                    index,
-                    "company",
-                    e.target.value
-                  )
-                }
-              />
-
-              <label>Description:</label>
-              <input
-                type="text"
-                value={entry.descriptionc || ""}
-                onChange={(e) =>
-                  this.handleInputChangeWorkExp(
-                    index,
-                    "descriptionc",
-                    e.target.value
-                  )
-                }
-              />
-
               <button
                 type="button"
-                style={{ marginLeft: "10px", width: "100px" }}
-                onClick={() =>
-                  this.handleRemoveSection("workExperience", index)
-                }
+                style={{
+                  marginBottom: "10px",
+                  width: "150px",
+                  margin: "auto",
+                  display: "flex",
+                }}
+                onClick={() => this.handleAddSection("workExperience")}
               >
-                Remove
+                Add Additional
               </button>
             </div>
-          ))}
+            <hr class=""></hr>
 
-          <h3>Projects:</h3>
-          <div style={{ marginBottom: "10px" }}>
-            <button
-              type="button"
-              style={{ marginBottom: "10px", width: "150px" }}
-              onClick={() => this.handleAddSection("projects")}
-            >
-              Add Projects
-            </button>
-          </div>
+            {this.state.workExperience.map((entry, index) => (
+              <div
+                className="row"
+                style={{
+                  marginBottom: "10px",
+                  marginLeft: "50px",
+                  marginRight: "50px",
+                }}
+                key={index}
+              >
+                <label>Company:</label>
+                <input
+                  type="text"
+                  value={entry.company || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeWorkExp(
+                      index,
+                      "company",
+                      e.target.value
+                    )
+                  }
+                />
 
-          {this.state.projects.map((entry, index) => (
-            <div className="row" style={{ marginBottom: "10px" }} key={index}>
-              <label>Project Title:</label>
-              <input
-                type="text"
-                value={entry.project_title || ""}
-                onChange={(e) =>
-                  this.handleInputChangeProjects(
-                    index,
-                    "project_title",
-                    e.target.value
-                  )
-                }
-              />
+                <label>Description:</label>
+                <input
+                  type="text"
+                  value={entry.descriptionc || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeWorkExp(
+                      index,
+                      "descriptionc",
+                      e.target.value
+                    )
+                  }
+                />
 
-              <label>Description:</label>
-              <input
-                type="text"
-                value={entry.project_desc || ""}
-                onChange={(e) =>
-                  this.handleInputChangeProjects(
-                    index,
-                    "project_desc",
-                    e.target.value
-                  )
-                }
-              />
+                <button
+                  type="button"
+                  style={{ marginLeft: "10px", width: "100px" }}
+                  onClick={() =>
+                    this.handleRemoveSection("workExperience", index)
+                  }
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
 
+            <h3>Projects:</h3>
+            <div style={{ marginBottom: "10px" }}>
               <button
                 type="button"
-                style={{ marginLeft: "10px", width: "100px" }}
-                onClick={() => this.handleRemoveSection("projects", index)}
+                style={{
+                  marginBottom: "10px",
+                  width: "150px",
+                  margin: "auto",
+                  display: "flex",
+                }}
+                onClick={() => this.handleAddSection("projects")}
               >
-                Remove
+                Add Projects
               </button>
             </div>
-          ))}
+            <hr class=""></hr>
 
-          <button type="submit" style={{ width: "100px" }}>
-            Submit
-          </button>
+            {this.state.projects.map((entry, index) => (
+              <div
+                className="row"
+                style={{
+                  marginBottom: "10px",
+                  margin: "auto",
+                  display: "flex",
+                  marginLeft: "50px",
+                  marginRight: "50px",
+                }}
+                key={index}
+              >
+                <label>Project Title:</label>
+                <input
+                  type="text"
+                  value={entry.project_title || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeProjects(
+                      index,
+                      "project_title",
+                      e.target.value
+                    )
+                  }
+                />
+
+                <label>Description:</label>
+                <input
+                  type="text"
+                  value={entry.project_desc || ""}
+                  onChange={(e) =>
+                    this.handleInputChangeProjects(
+                      index,
+                      "project_desc",
+                      e.target.value
+                    )
+                  }
+                />
+
+                <button
+                  type="button"
+                  style={{ marginLeft: "10px", width: "100px" }}
+                  onClick={() => this.handleRemoveSection("projects", index)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="submit"
+              style={{ width: "100px", margin: "auto", display: "flex" }}
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     );
