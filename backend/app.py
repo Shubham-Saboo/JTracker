@@ -41,7 +41,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact"]
+existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact","/coverletter"]
 
 user_agent = UserAgent()
 def create_app():
@@ -524,7 +524,6 @@ def create_app():
             model="gpt-3.5-turbo", messages=message
             ) 
             reply = chat.choices[0].message.content 
-            print(reply)
             return jsonify(reply), 200
         except:
             return jsonify({"error": "Internal server error"}), 500
@@ -748,24 +747,6 @@ def create_app():
             print(f"Error processing form data: {str(e)}")
             return "Error processing form data", 500
     
-<<<<<<< Updated upstream
-    @app.route('/openai-interact', methods=['POST'])
-    def openai_interact():
-        try:
-            data = request.get_json()
-            prompt = data.get('prompt')
-            # Make a request to the OpenAI API using the provided prompt
-            #prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the comapanies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
-            message = [ {"role": "system", "content": prompt} ]
-            chat = openai.ChatCompletion.create( 
-            model="gpt-3.5-turbo", messages=message
-            ) 
-            
-            
-            return jsonify(chat)
-        except Exception as e:
-            return jsonify({'error': str(e)}), 500
-=======
     def generate_word(data):
         doc = Document()
         print("Imhere4")
@@ -833,7 +814,23 @@ def create_app():
             print("Imhere")
             print(f"Error processing form data: {str(e)}")
             return "Error processing form data", 500
->>>>>>> Stashed changes
+    
+    @app.route('/openai-interact', methods=['POST'])
+    def openai_interact():
+        try:
+            data = request.get_json()
+            prompt = data.get('prompt')
+            # Make a request to the OpenAI API using the provided prompt
+            #prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the comapanies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
+            message = [ {"role": "system", "content": prompt} ]
+            chat = openai.ChatCompletion.create( 
+            model="gpt-3.5-turbo", messages=message
+            ) 
+            
+            
+            return jsonify(chat)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
 
     return app
 
