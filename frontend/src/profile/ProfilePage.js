@@ -25,15 +25,15 @@ const UserProfile = () => {
     console.log('Print profile data')
     console.log(profiledata)
 
-    const formatSkills = () => {
-        let formattedSkills = '';
-        console.log(profiledata.skills.length)
-        for (let i = 0; i < profiledata.skills.length; i += 2) {
-            formattedSkills += `${profiledata.skills[i]}${profiledata.skills[i + 1] ? `, ${profiledata.skills[i + 1]}` : ''}`;
-            formattedSkills += i + 2 < profiledata.skills.length ? '\n' : '';
-        }
-        return formattedSkills;
-    };
+    // const formatSkills = () => {
+    //     let formattedSkills = '';
+    //     console.log(profiledata.skills.length)
+    //     for (let i = 0; i < profiledata.skills.length; i += 2) {
+    //         formattedSkills += `${profiledata.skills[i]}${profiledata.skills[i + 1] ? `, ${profiledata.skills[i + 1]}` : ''}`;
+    //         formattedSkills += i + 2 < profiledata.skills.length ? '\n' : '';
+    //     }
+    //     return formattedSkills;
+    // };
 
     // Prepare data for the bar graph
     const barChartData = {
@@ -72,6 +72,7 @@ const UserProfile = () => {
                         <Typography variant="h4">User Profile</Typography>
                         <Typography variant="body1">Full Name: {profiledata.fullname}</Typography>
                         <Typography variant="body1">Username: {profiledata.username}</Typography>
+                        <Typography variant="body1">EmailId: {profiledata.email}</Typography>
                         <Typography variant="body1">
                             Skills:
                             <ul>

@@ -181,6 +181,7 @@ def create_app():
         applications = user["applications"]
         username = user["username"]
         fullname = user["fullName"]
+        email = user["email"]
         skills = user["skills"]
         skills = '\n'.join('\t'.join(skills[i:i + 2]) for i in range(0, len(skills), 2))
         workex = user["workExperience"]
@@ -195,7 +196,8 @@ def create_app():
             'fullname': fullname,
             'skills': skills,
             'workExp': workex,
-            'edu': edu 
+            'edu': edu,
+            'email': email,
         }
         return jsonify(stats)
         # else:
