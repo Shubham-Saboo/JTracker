@@ -170,6 +170,33 @@ def create_app():
     def health_check():
         return jsonify({"message": "Server up and running"}), 200
     
+    @app.route('/users/profile')
+    def get_profile():
+        # Retrieve user's applications from MongoDB using user_id
+        user = users_collection.find_one({'id': user_id})
+        if user:
+            userid = get_userid_from_header()
+            user = Users.objects(id=userid).first()
+            applications = user["applications"]
+            username = user["username"]
+            fullname = user["fullname"]
+            print(applications)
+            stats = {'wishlist': 1,
+                    'applied': 1,
+                    'waiting_for_referral': 1,
+                    'rejected': 1,
+                    'username': username,
+                    'fullname': fullname}
+            # stats = {
+            #     'wishlist': sum(1 for app in applications if app['status'] == 1),
+            #     'applied': sum(1 for app in applications if app['status'] == 2),
+            #     'waiting_for_referral': sum(1 for app in applications if app['status'] == 3),
+            #     'rejected': sum(1 for app in applications if app['status'] == 4)
+            # }
+            return jsonify(stats)
+        else:
+            return jsonify({'message': 'User not found'}), 404
+    
 
     @app.route("/users/signup", methods=["POST"])
     def sign_up():
