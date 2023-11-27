@@ -470,7 +470,7 @@ def create_app():
                 "status": request_data.get("status", "1"),
             }
             applications = user["applications"] + [current_application]
-
+                
             user.update(applications=applications)
             return jsonify(current_application), 200
         except:
