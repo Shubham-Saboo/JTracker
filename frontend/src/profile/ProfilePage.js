@@ -1,92 +1,100 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './UserProfilePage.css';
+import { Box, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Bar } from 'react-chartjs-2';
 
 const UserProfile = () => {
-    // const [userData, setUserData] = useState({});
-    const [profiledata, setprofiledata] = useState({});
+    const [profiledata, setProfileData] = useState({});
     useEffect(() => {
         const headers = {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Access-Control-Allow-Credentials": "true",
-          };
-        // Fetch application statistics
-        console.log('hersdasdsdasd')
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': 'true',
+        };
+
         axios.get('http://localhost:5000/users/profile', { headers })
             .then(response => {
-                setprofiledata(response.data);
-                console.log(response.data)
+                setProfileData(response.data);
             })
             .catch(error => {
                 console.error('Error fetching application statistics:', error);
             });
     }, []);
+    console.log(profiledata)
+
+    const formatSkills = () => {
+        let formattedSkills = '';
+        console.log(profiledata.skills.length)
+        for (let i = 0; i < profiledata.skills.length; i += 2) {
+            formattedSkills += `${profiledata.skills[i]}${profiledata.skills[i + 1] ? `, ${profiledata.skills[i + 1]}` : ''}`;
+            formattedSkills += i + 2 < profiledata.skills.length ? '\n' : '';
+        }
+        return formattedSkills;
+    };
+
+    // Prepare data for the bar graph
+    const barChartData = {
+        labels: ['Wishlist', 'Applied', 'Waiting for Referral', 'Rejected'],
+        datasets: [
+            {
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1,
+                data: [
+                    profiledata.wishlist || 0,
+                    profiledata.applied || 0,
+                    profiledata.waiting_for_referral || 0,
+                    profiledata.rejected || 0,
+                ],
+            },
+        ],
+    };
 
     return (
-        <div className="profile-container">
-            {/* Left half: User information */}
-            <div className="user-info">
-                <h2>User Profile</h2>
-                <p>Full Name: {profiledata.fullname}</p>
-                <p>Username: {profiledata.username}</p>
-                {/* Display other user information */}
-            </div>
+        <Grid container spacing={3} className="dashboard-container">
+            {/* Left side - User information */}
+            <Grid item xs={4}>
+                <Card variant="outlined" className="user-info">
+                    <CardContent>
+                        <Typography variant="h4">User Profile</Typography>
+                        <Typography variant="body1">Full Name: {profiledata.fullname}</Typography>
+                        <Typography variant="body1">Username: {profiledata.username}</Typography>
+                        <Typography variant="body1">Skills: {profiledata.skills}</Typography>
+                        <Typography variant="body1">Education: {profiledata.edu}</Typography>
+                        <Typography variant="body1">Work Experience: {profiledata.workExp}</Typography>
+                        {/* Display other user information */}
+                    </CardContent>
+                </Card>
+            </Grid>
 
-            {/* Right half: Application Statistics */}
-            <div className="app-stats">
-                <h2>Application Statistics</h2>
-                <div className="card-container">
-                    <div className="card">
-                        <h3>Wishlist</h3>
-                        <p>{profiledata.wishlist}</p>
-                    </div>
-                    {/* Repeat the card structure for other application stats */}
-                    <div className="card">
-                        <h3>Applied</h3>
-                        <p>{profiledata.applied}</p>
-                    </div>
-                    <div className="card">
-                        <h3>Waiting for Referral</h3>
-                        <p>{profiledata.waiting_for_referral}</p>
-                    </div>
-                    <div className="card">
-                        <h3>Rejected</h3>
-                        <p>{profiledata.rejected}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            {/* Right side - Application Statistics */}
+            <Grid item xs={8} container spacing={3}>
+                {/* Bar Graph */}
+                <Grid item xs={12}>
+                    <Card variant="outlined" className="cardprofile">
+                        <CardContent>
+                            <Typography variant="h4">Application Statistics</Typography>
+                            <Bar data={barChartData} />
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+                {/* Individual statistics cards */}
+                {/* You can remove the previous card elements representing individual statistics */}
+            </Grid>
+        </Grid>
     );
-
-
-    // return (
-    //     <div>
-    //         <h2>User Profile</h2>
-    //         <div>
-    //             <h3>General Information</h3>
-    //             <p>Full Name: {profiledata.fullname}</p>
-    //             <p>Username: {profiledata.username}</p>
-    //             <h3>Application Statistics</h3>
-    //             <p>Wishlist: {profiledata.wishlist}</p>
-    //             <p>Applied: {profiledata.applied}</p>
-    //             <p>Waiting for Referral: {profiledata.waiting_for_referral}</p>
-    //             <p>Rejected: {profiledata.rejected}</p>
-    //         </div>
-    //     </div>
-    // );
 };
 
 export default UserProfile;
-
-// export default class UserProfile extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <h2>User Profile</h2>
-//                 <div>
-//                     <h3>General Information</h3>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }

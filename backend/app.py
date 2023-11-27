@@ -41,7 +41,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact"]
+existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact","/coverletter"]
 
 user_agent = UserAgent()
 def create_app():
@@ -181,20 +181,20 @@ def create_app():
         applications = user["applications"]
         username = user["username"]
         fullname = user["fullName"]
-        print(applications)
-        # stats = {'wishlist': 1,
-        #         'applied': 1,
-        #         'waiting_for_referral': 1,
-        #         'rejected': 1,
-        #         'username': username,
-        #         'fullname': fullname}
+        skills = user["skills"]
+        workex = user["workExperience"]
+        edu = user["education"]
+
         stats = {
             'wishlist': sum(1 for app in applications if app['status'] == '1'),
             'applied': sum(1 for app in applications if app['status'] == '2'),
             'waiting_for_referral': sum(1 for app in applications if app['status'] == '3'),
             'rejected': sum(1 for app in applications if app['status'] == '4'),
             'username': username,
-            'fullname': fullname
+            'fullname': fullname,
+            'skills': skills,
+            'workExp': workex,
+            'edu': edu 
         }
         return jsonify(stats)
         # else:
@@ -226,10 +226,14 @@ def create_app():
             password = data["password"]
             password_hash = hashlib.md5(password.encode())
             print("hereawdawdar")
+            print(data)
             user = Users(
                 id=get_new_user_id(),
                 fullName=data["fullName"],
                 username=data["username"],
+                skills= data["skills"],
+                education= data["education"],
+                workExperience= data["workExperience"],
                 password=password_hash.hexdigest(),
                 authTokens=[],
                 applications=[],
@@ -238,7 +242,8 @@ def create_app():
             user.save()
             print("herer22222")
             return jsonify(user.to_json()), 200
-        except:
+        except Exception as e:
+            print(e)
             return jsonify({"error": "Internal server error"}), 500
 
     
@@ -514,11 +519,11 @@ def create_app():
                     user.resume.seek(0)
             except:
                 return jsonify({"error": "resume could not be found"}), 400
-            
+            print("I am here0")
             pdf_content = io.BytesIO(user.resume.read())
             load_pdf = PyPDF2.PdfReader(pdf_content)
             page_content = load_pdf.pages[0].extract_text()
-            prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the comapanies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
+            prompt = "Analyse the resume below and recommend a list of 6 jobs for the user. All the companies should be among the fortune 500. The recommendations should be in a json format with company name, job title, and a link to the company career page.Only display the json. Json structure is {jobs: [{job_title:xx,company_name:xx,career_page:xx}]\n\nResume:\n\n" + page_content + "\n\nRecommendation JSON:"
             message = [ {"role": "system", "content": prompt} ]
             chat = openai.ChatCompletion.create( 
             model="gpt-3.5-turbo", messages=message
@@ -747,6 +752,74 @@ def create_app():
             print(f"Error processing form data: {str(e)}")
             return "Error processing form data", 500
     
+    def generate_word(data):
+        doc = Document()
+        print("Imhere4")
+        # Set page margins to fit within one page
+        sections = doc.sections
+        for section in sections:
+            section.left_margin = Pt(36)  # 0.5 inch
+            section.right_margin = Pt(36)  # 0.5 inch
+            section.top_margin = Pt(36)  # 0.5 inch
+            section.bottom_margin = Pt(36)  # 0.5 inch
+
+        # Helper function to add heading with format
+        def add_heading_with_format(doc, text, font_size=16, is_bold=True):
+            p = doc.add_paragraph()
+            run = p.add_run(text)
+            if is_bold:
+                run.bold = True
+            p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            run.font.size = Pt(font_size)
+
+        
+        # Title
+        add_heading_with_format(doc, "Cover Letter", font_size=18, is_bold=True)
+
+        # Contact Information
+        add_heading_with_format(doc, "Contact Information", font_size=16, is_bold=True)
+        prompt = "Generate a cover letter for the role of" + data["role"] + " to apply in the company " + data["company"]+ " while highlighting my skills " + data["skill1"] + "and" + data["skill2"] 
+        message = [ {"role": "system", "content": prompt} ]
+        chat = openai.ChatCompletion.create( 
+        model="gpt-3.5-turbo", messages=message
+        ) 
+        reply = chat.choices[0].message.content
+        doc.add_paragraph(reply)
+        print("Imhere5")
+
+        # Save the document to a .docx file
+
+        word_buffer = BytesIO()
+        output_file_path = "generated_cover_letter.docx"
+        doc.save(word_buffer)
+        word_buffer.seek(0)
+        print("Imhere6")
+        return word_buffer
+
+    @app.route('/coverletter', methods=['POST'])
+    def form_builderr():
+        print("I m here322")
+        try:
+            # Assuming the request data is in JSON format
+            data = request.json
+            print("Imhere1")
+            # Log the data (you can customize this part)
+            print("Received Form Data:")
+            for key, value in data.items():
+                print(f"{key}: {value}")
+            
+            # Generate PDF
+            word_data = generate_word(data)
+            print("Imhere2")
+            # Send the PDF file as a response
+            return send_file(word_data, mimetype='application/msword', as_attachment=True,
+                            attachment_filename='generated_cover_letter.docx')
+            print("Imhere3")
+        except Exception as e:
+            print("Imhere")
+            print(f"Error processing form data: {str(e)}")
+            return "Error processing form data", 500
+    
     @app.route('/openai-interact', methods=['POST'])
     def openai_interact():
         try:
@@ -765,7 +838,6 @@ def create_app():
             return jsonify({'error': str(e)}), 500
 
     return app
-
 
 app = create_app()
 with open("application.yml") as f:
@@ -789,6 +861,9 @@ class Users(db.Document):
     fullName = db.StringField()
     username = db.StringField()
     password = db.StringField()
+    skills = db.ListField()
+    workExperience = db.ListField()
+    education = db.ListField()
     authTokens = db.ListField()
     applications = db.ListField()
     resume = db.FileField()

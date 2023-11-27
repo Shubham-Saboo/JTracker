@@ -15,6 +15,7 @@ const iconMap = {
   JobRecommendPage: <LocationOnIcon />,
   ResumeBuilder: <BuildIcon />,
   UserProfile: <PersonIcon />,
+  CoverLetter: <BuildIcon/>
 };
 
 export default class Sidebar extends Component {
