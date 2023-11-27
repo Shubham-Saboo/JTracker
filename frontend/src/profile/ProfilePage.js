@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Component } from 'react';
 import axios from 'axios';
+import './UserProfilePage.css';
 
 const UserProfile = () => {
-    // const [userData, setUserData] = useState({});
+    // const [profiledata, setUserData] = useState({});
     const [profiledata, setprofiledata] = useState({});
     useEffect(() => {
         const headers = {
@@ -21,11 +22,10 @@ const UserProfile = () => {
                 console.error('Error fetching application statistics:', error);
             });
     }, []);
-
     return (
         <div className="profile-container">
             {/* Left half: User information */}
-            <div className="user-info">
+            <div className="cardprofile user-info">
                 <h2>User Profile</h2>
                 <p>Full Name: {profiledata.fullname}</p>
                 <p>Username: {profiledata.username}</p>
@@ -35,21 +35,21 @@ const UserProfile = () => {
             {/* Right half: Application Statistics */}
             <div className="app-stats">
                 <h2>Application Statistics</h2>
-                <div className="card-container">
-                    <div className="card">
+                <div className="cardprofile-container">
+                    <div className="cardprofile">
                         <h3>Wishlist</h3>
                         <p>{profiledata.wishlist}</p>
                     </div>
                     {/* Repeat the card structure for other application stats */}
-                    <div className="card">
+                    <div className="cardprofile">
                         <h3>Applied</h3>
                         <p>{profiledata.applied}</p>
                     </div>
-                    <div className="card">
+                    <div className="cardprofile">
                         <h3>Waiting for Referral</h3>
                         <p>{profiledata.waiting_for_referral}</p>
                     </div>
-                    <div className="card">
+                    <div className="cardprofile">
                         <h3>Rejected</h3>
                         <p>{profiledata.rejected}</p>
                     </div>

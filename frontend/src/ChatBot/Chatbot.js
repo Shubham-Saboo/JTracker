@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { BsChatSquare, BsX, BsArrowRight } from 'react-icons/bs';
 import './Chatbot.css'; // Import your CSS file
+import { BsIconName } from 'react-icons/bs';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);

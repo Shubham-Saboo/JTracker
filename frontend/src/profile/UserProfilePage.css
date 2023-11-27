@@ -1,0 +1,34 @@
+.profile-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.user-info {
+    flex: 1;
+    padding: 20px;
+    margin-right: 20px; /* Space between user info card and app stats */
+}
+
+.app-stats {
+    flex: 1;
+    padding: 20px;
+}
+
+.cardprofile-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.cardprofile {
+    width: 200px;
+    height: 120px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
