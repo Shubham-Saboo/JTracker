@@ -186,8 +186,14 @@ class ResumeBuilder extends Component {
             </a>
           )}
           <div style={{ marginBottom: "10px" }}>
-            <div style={{ marginBottom: "10px", marginTop: "10px" }}>
-              <h2>__________________Build Your Resume__________________</h2>
+            <div
+              style={{
+                marginBottom: "10px",
+                marginTop: "10px",
+                width: "1000px",
+              }}
+            >
+              <h2>Build Your Resume</h2>
             </div>
           </div>
           <div className="fcard">
