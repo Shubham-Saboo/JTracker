@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TextField, Grid, Button, Typography, Link, } from '@mui/material';
 import styles from './styles.module.css';
 
 class CoverLetter extends Component {
@@ -73,18 +74,22 @@ class CoverLetter extends Component {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <form style={{ textAlign: 'left'}} onSubmit={this.handleSubmit} className={styles['download-form']}>
         {!this.state.linkClicked && this.state.downloadLink && (
-          <a
-            href={this.state.downloadLink}
-            download="CoverLetter.docx"
-            onClick={this.linkClickHandler}
-          >
-            Click here to download your Cover Letter
-          </a>
-        )}
+  <Button
+    variant="contained"
+    color="primary"
+    size="large"
+    component="a"
+    href={this.state.downloadLink}
+    download="CoverLetter.docx"
+    onClick={this.linkClickHandler}
+    style={{ marginTop: '20px' }}
+  >
+    Download Cover Letter
+  </Button>
+)}
           <div style={{ marginBottom: '10px'}}>
             <div style={{ marginBottom: '10px', marginTop: '10px' }}>
-              <h2>_________________Build Your Cover Letter__________________</h2></div>
-            <h3 style={{ marginBottom: '10px', marginTop: '50px' }}>:</h3>
+              <h1>Build Your Cover Letter</h1></div>
           </div>
           <div style={{ marginBottom: '50px' }}>
             <div style={{ marginBottom: '10px' }}>
@@ -134,13 +139,18 @@ class CoverLetter extends Component {
               />
             </div>
           </div>
-          <button type="submit" style={{ width: '100px' }}>
-            Submit
-          </button>          
+          <Grid container justifyContent="center">
+          <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{ width: '100px', marginTop: '-50px' }}
+          >
+          Submit
+          </Button>
+          </Grid>
         </form>
       </div>
-
-
 
     );
   }
