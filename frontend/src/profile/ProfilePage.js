@@ -76,25 +76,28 @@ const UserProfile = () => {
                         <Typography variant="body1">
                             Skills:
                             <ul>
-                                {profiledata?.skills && profiledata.skills.map(skill => (
-                                    <li key={skill}>{skill}</li>
-                                ))}
+                            {Array.isArray(profiledata.skills) &&
+                                     profiledata.skills.map((skill, index) => (
+                                        <li key={index}>{skill}</li>
+                            ))}
                             </ul>
                         </Typography>
                         <Typography variant="body1">
                             Education:
                             <ul>
-                                {profiledata?.edu && profiledata.edu.map(edu => (
-                                    <li key={edu}>{edu}</li>
-                                ))}
+                            {Array.isArray(profiledata.edu) &&
+                                 profiledata.edu.map((edu, index) => (
+                                        <li key={index}>{edu}</li>
+                            ))}
                             </ul>
                         </Typography>
                         <Typography variant="body1">
                             Work Experience:
                             <ul>
-                                {profiledata?.workExp && profiledata.workExp.map(workExp => (
-                                    <li key={workExp}>{workExp}</li>
-                                ))}
+                            {Array.isArray(profiledata.workExp) &&
+                                profiledata.workExp.map((workExp, index) => (
+                                     <li key={index}>{workExp}</li>
+                            ))}
                             </ul>
                         </Typography>
 
