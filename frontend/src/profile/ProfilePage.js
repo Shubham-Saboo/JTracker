@@ -36,6 +36,23 @@ const UserProfile = () => {
     // };
 
     // Prepare data for the bar graph
+
+    const options = {
+        plugins: {
+            legend: {
+                display: false, // Hide the legend
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                suggestedMin: 0, // Force minimum value to 0
+                suggestedMax: 10, // Set the maximum value as desired
+                stepSize: 1, // Control the step size between ticks
+                precision: 0, // Show only integers (no decimals)
+            },
+        },
+    };
     const barChartData = {
         labels: ['Wishlist', 'Applied', 'Waiting for Referral', 'Rejected'],
         datasets: [
@@ -113,7 +130,7 @@ const UserProfile = () => {
                     <Card variant="outlined" className="cardprofile">
                         <CardContent>
                             <Typography variant="h4">Application Statistics</Typography>
-                            <Bar data={barChartData} />
+                            <Bar data={barChartData} options={options} />
                         </CardContent>
                     </Card>
                 </Grid>
