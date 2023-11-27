@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import "../static/resume.css";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Button,
+  Typography,
+  Paper,
+} from "@mui/material";
 
 function JobRecommendPage() {
   const [fileName, setFileName] = useState("");
@@ -54,46 +65,59 @@ function JobRecommendPage() {
   }, [jobRecommendations]);
 
   return (
-    <div style={{ marginTop: "10rem" }}>
-      <h2>Uploaded Documents</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th className="tablecol1">Documents</th>
-            <th className="tablecol2">Actions</th>
-          </tr>
-          <tr>
-            <td className="tablecol1">{fileName}</td>
-            <td className="tablecol2">
-              <button id="download" onClick={getRecommendation} type="button">
-                Get Job Recommendations
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h2 style={{ marginTop: "3rem", marginBottom: "2rem" }}>
+    <div style={{ margin: "2rem" }}>
+      <Typography variant="h4" gutterBottom>
+        Uploaded Documents
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell>Documents</TableCell>
+              <TableCell>
+                <Button
+                  variant="contained"
+                  onClick={getRecommendation}
+                  disableElevation
+                >
+                  Get Job Recommendations
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>{fileName}</TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <Typography variant="h4" style={{ marginTop: "3rem" }} gutterBottom>
         Job Recommendations
-      </h2>
-      <table>
-        <tbody>
-          <tr>
-            <th className="tablecol2">Job Title</th>
-            <th className="tablecol2">Name of the company</th>
-            <th className="tablecol2">Career Page</th>
-          </tr>
-          {Object.keys(jobRecommendations).length > 0 &&
-            jobRecommendations.jobs.map((job, index) => (
-              <tr key={index}>
-                <td className="tablecol2">{job.job_title}</td>
-                <td className="tablecol2">{job.company_name}</td>
-                <td className="tablecol2">
-                  <a href={job.career_page}>{job.career_page}</a>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      </Typography>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} size="medium">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center"><strong>Job Title</strong></TableCell>
+              <TableCell align="center"><strong>Name of the company</strong></TableCell>
+              <TableCell align="center"><strong>Career Page</strong></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Object.keys(jobRecommendations).length > 0 &&
+              jobRecommendations.jobs.map((job, index) => (
+                <TableRow key={index}>
+                  <TableCell align="center">{job.job_title}</TableCell>
+                  <TableCell align="center">{job.company_name}</TableCell>
+                  <TableCell align="center">
+                    <a href={job.career_page}>{job.career_page}</a>
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }
