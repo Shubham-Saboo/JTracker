@@ -8,9 +8,34 @@ export default class LoginPage extends Component{
         super(props);
 
         this.state = {
-
+            skills: [''], // Array to hold skills
+            education: [''], // Array to hold education
+            workExperience: [''], // Array to hold work experience
         }
     }
+
+    handleAddField = (fieldName) => {
+        this.setState((prevState) => ({
+            [fieldName]: [...prevState[fieldName], ''],
+        }));
+    };
+
+    handleRemoveField = (index, fieldName) => {
+        this.setState((prevState) => {
+            const updatedField = [...prevState[fieldName]];
+            updatedField.splice(index, 1);
+            return { [fieldName]: updatedField };
+        });
+    };    
+
+    handleChange = (index, fieldName, event) => {
+        const { value } = event.target;
+        this.setState((prevState) => {
+            const updatedField = [...prevState[fieldName]];
+            updatedField[index] = value;
+            return { [fieldName]: updatedField };
+        });
+    };
 
     handleLogin = (uname, pwd) =>{
         console.log("Login click");
@@ -32,14 +57,18 @@ export default class LoginPage extends Component{
          
     }
 
-    handleSignup = (fullname, uname, pwd) => {
+    handleSignup = (fullname, uname, pwd, skills, education, workExperience) => {
         console.log("Signup click");
+        console.log(skills);
         let obj = {
             username: uname,
             password: pwd,
-            fullName: fullname
+            fullName: fullname,
+            skills: skills,
+            education: education,
+            workExperience: workExperience
         }
-        //console.log(obj)
+        console.log(obj)
         signUp(obj).then((res) => {
             alert("Sign up successfull! Proceed to Login");
         }).catch((error) => {
@@ -49,6 +78,7 @@ export default class LoginPage extends Component{
     }
 
     render() {
+        const { skills, education, workExperience } = this.state;
         return(
             <div className="auth-wrapper" style={this.authWrapper}>
                 <div className="auth-inner" style={this.authInner}>
@@ -92,12 +122,111 @@ export default class LoginPage extends Component{
                                 <input type="password" className="form-control" id="spwd" placeholder="Enter password" />
                             </div>
 
+                            <div className="form-group">
+                                <label>Skills</label>
+                                {skills.map((skill, index) => (
+                                    <div key={index}>
+                                        <input
+                                            type="text"
+                                            className="skillsInput"
+                                            placeholder="Enter skill"
+                                            value={skill}
+                                            onChange={(e) => this.handleChange(index, 'skills', e)}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => this.handleRemoveField(index, 'skills')}
+                                            className="btn btn-sm btn-danger ml-2"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={() => this.handleAddField('skills')}
+                                    className="btn btn-sm btn-secondary mt-2"
+                                >
+                                    Add Skill
+                                </button>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Education Details</label>
+                                {education.map((edu, index) => (
+                                    <div key={index}>
+                                        <input
+                                            type="text"
+                                            className="educationInput"
+                                            placeholder="Enter education detail"
+                                            value={edu}
+                                            onChange={(e) => this.handleChange(index, 'education', e)}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => this.handleRemoveField(index, 'education')}
+                                            className="btn btn-sm btn-danger ml-2"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={() => this.handleAddField('education')}
+                                    className="btn btn-sm btn-secondary mt-2"
+                                >
+                                    Add Education
+                                </button>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Work Experience</label>
+                                {workExperience.map((exp, index) => (
+                                    <div key={index}>
+                                        <input
+                                            type="text"
+                                            className="workExperienceInput"
+                                            placeholder="Enter work experience detail"
+                                            value={exp}
+                                            onChange={(e) => this.handleChange(index, 'workExperience', e)}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => this.handleRemoveField(index, 'workExperience')}
+                                            className="btn btn-sm btn-danger ml-2"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={() => this.handleAddField('workExperience')}
+                                    className="btn btn-sm btn-secondary mt-2"
+                                >
+                                    Add Work Experience
+                                </button>
+                            </div>
+
+
                             <button type="submit" onClick={(e) =>{
                                 e.preventDefault();
                                 let name = document.querySelector("#fullname").value
                                 let uname = document.querySelector("#suname").value
                                 let pwd = document.querySelector("#spwd").value
-                                this.handleSignup(name, uname, pwd)
+
+                                // Fetch skills
+                                const skills = Array.from(document.querySelectorAll(".skillsInput")).map(input => input.value);
+                                console.log(skills)
+                                // Fetch education details
+                                const education = Array.from(document.querySelectorAll(".educationInput")).map(input => input.value);
+
+                                // Fetch work experience details
+                                const workExperience = Array.from(document.querySelectorAll(".workExperienceInput")).map(input => input.value);
+
+                                this.handleSignup(name, uname, pwd, skills, education, workExperience);
+                                //this.handleSignup(name, uname, pwd)
                                 }}  className="btn btn-secondary btn-block">Sign Up</button>
                         </form>
                     </Tab>

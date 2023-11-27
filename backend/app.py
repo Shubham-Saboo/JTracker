@@ -181,20 +181,20 @@ def create_app():
         applications = user["applications"]
         username = user["username"]
         fullname = user["fullName"]
-        print(applications)
-        # stats = {'wishlist': 1,
-        #         'applied': 1,
-        #         'waiting_for_referral': 1,
-        #         'rejected': 1,
-        #         'username': username,
-        #         'fullname': fullname}
+        skills = user["skills"]
+        workex = user["workExperience"]
+        edu = user["education"]
+
         stats = {
             'wishlist': sum(1 for app in applications if app['status'] == '1'),
             'applied': sum(1 for app in applications if app['status'] == '2'),
             'waiting_for_referral': sum(1 for app in applications if app['status'] == '3'),
             'rejected': sum(1 for app in applications if app['status'] == '4'),
             'username': username,
-            'fullname': fullname
+            'fullname': fullname,
+            'skills': skills,
+            'workExp': workex,
+            'edu': edu 
         }
         return jsonify(stats)
         # else:
@@ -226,10 +226,14 @@ def create_app():
             password = data["password"]
             password_hash = hashlib.md5(password.encode())
             print("hereawdawdar")
+            print(data)
             user = Users(
                 id=get_new_user_id(),
                 fullName=data["fullName"],
                 username=data["username"],
+                skills= data["skills"],
+                education= data["education"],
+                workExperience= data["workExperience"],
                 password=password_hash.hexdigest(),
                 authTokens=[],
                 applications=[],
@@ -238,7 +242,8 @@ def create_app():
             user.save()
             print("herer22222")
             return jsonify(user.to_json()), 200
-        except:
+        except Exception as e:
+            print(e)
             return jsonify({"error": "Internal server error"}), 500
 
     
@@ -789,6 +794,9 @@ class Users(db.Document):
     fullName = db.StringField()
     username = db.StringField()
     password = db.StringField()
+    skills = db.ListField()
+    workExperience = db.ListField()
+    education = db.ListField()
     authTokens = db.ListField()
     applications = db.ListField()
     resume = db.FileField()

@@ -20,6 +20,8 @@ cd ./frontend || exit
 echo -e "Attempting to install NPM packages..."
 npm install
 npm install react-icons
+npm install @mui/material @emotion/react @emotion/styled
+npm install chart.js@3 react-chartjs-2@3
 exit_result $? "NPM package installation"
 virtualenv venv
 source venv/bin/activate
