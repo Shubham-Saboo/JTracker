@@ -2,18 +2,22 @@ import React, { Component } from "react";
 import UserProfile from "../profile/ProfilePage";
 import "../static/navbar.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaUser } from "react-icons/fa";
+
 class Navbar extends Component {
   handleProfileClick = () => {
-    this.props.switchPage("UserProfile") // Navigate to UserProfile component
+    this.props.switchPage("UserProfile"); // Navigate to UserProfile component
+    this.props.switchPage("UserProfile"); // Navigate to UserProfile component
   };
 
   // handleLogout = () => {
-   
+
   //     localStorage.removeItem("token");
   //     this.setState({
   //       sidebar: false,
   //     });
-    
+
   // };
 
   render() {
@@ -36,9 +40,16 @@ class Navbar extends Component {
               <p className="navbar-brand mx-auto">Job Tracker</p>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <button className="nav-link" onClick={this.handleProfileClick}>
-                    <i className="bi bi-person-circle fs-4 me-3"></i>
-                    Profile
+                  <button
+                    className="nav-link"
+                    onClick={this.handleProfileClick}
+                    style={{
+                      backgroundColor: "#009970",
+                      height: "47px",
+                      width: "47px",
+                    }}
+                  >
+                    <FaUser style={{ color: "#fafafa" }} />
                   </button>
                 </li>
               </ul>

@@ -875,7 +875,7 @@ def get_new_application_id(user_id):
     return new_id + 1
 
 
-reminder_email()
+#reminder_email()
 
 
 if __name__ == "__main__":
