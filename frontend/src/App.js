@@ -73,7 +73,7 @@ export default class App extends React.Component {
           </div>
           <div className="main">
             <div>
-              <Navbar />
+              <Navbar switchPage={this.switchPage.bind(this)}/>
             </div>
             <div className="content">
               <div className="">
