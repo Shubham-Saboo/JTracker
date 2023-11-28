@@ -1,12 +1,12 @@
 https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-aa15-99cd752ab0cc.mp4
 
-[![GitHub license](https://img.shields.io/github/license/Cynamide/application-tracking-system)](https://github.com/Cynamide/application-tracking-system/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/702631309.svg)](https://zenodo.org/doi/10.5281/zenodo.10026046)
 [![codecov](https://codecov.io/gh/Cynamide/application-tracking-system/branch/main/graph/badge.svg)](https://codecov.io/gh/Cynamide/application-tracking-system)
-![GitHub issues](https://img.shields.io/github/issues/Cynamide/application-tracking-system)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/Cynamide/application-tracking-system)
-![GitHub top language](https://img.shields.io/github/languages/top/Cynamide/application-tracking-system)
-[![Super Linter](https://github.com/Cynamide/application-tracking-system/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Cynamide/application-tracking-system/actions/workflows/super-linter.yml)
+![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/Shubham-Saboo/JTracker)
+![GitHub top language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)
+[![Super Linter](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml)
 
 # J-Tracker - Your Job Tracking Assistant
 
@@ -108,13 +108,14 @@ The interface through which a user is able to search for specific jobs based on 
 
 #### Version 2.0.0
 - Major bug fixes for the job search feature
-- Implemented a ChatBot to solve user queries
-- Added a feature to build a resume in a word file from user input
+- Implemented an interactive ChatBot to solve user queries
+- Added a new feature to build a resume in a word file from user input
 - Used the OpenAI API to generate the cover letter for a specific company and Job Role
 
 #### Version 2.0.1
-- Enhanced the UI of the application with major changes
-- Added a Set Reminder function for different applications
+- Enhanced the UI of the application with major upgrades
+- Added a Set Reminder function for wishlist applications
+- Modified the SideBar and the Navigation Bar
 - Updated badges for repo
 - Updated GitHub workflows files
 
@@ -128,8 +129,7 @@ Watch: https://github.com/Cynamide/application-tracking-system/blob/ff0691c91933
 
 ## Future Scope:
 
-- Include deadline reminders for the application and interview.
-- Add a feature that allows users to attach these reminders to their Google calendar.
+- Add a feature that allows users to attach the wishlist reminders to their Google calendar.
 - Incorporate notifications for upcoming deadlines.
 - Add a storage option for resumes and cover letters so they can be saved for future use.
 - Include a direct link to the company's application site when the wishlist item is clicked.
