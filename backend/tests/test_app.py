@@ -120,7 +120,7 @@ class TestApp(unittest.TestCase):
         self.assertEqual(response.status_code, 500) 
 
 
-    @patch('create_app.get_userid_from_header')
+    @patch('app.get_userid_from_header')
     def test_get_resume_authorized(self, mock_get_userid):
         # Mock the behavior of get_userid_from_header to return a valid user ID
         mock_get_userid.return_value = 'valid_user_id'
@@ -132,7 +132,7 @@ class TestApp(unittest.TestCase):
         # Assert the response status code to ensure authorization is successful
         self.assertEqual(response.status_code, 200)
 
-    @patch('create_app.get_userid_from_header')
+    @patch('app.get_userid_from_header')
     @patch('app.Users.objects')
     def test_upload_resume(self, mock_user_objects, mock_userid_from_header):
        # Mocking the Users.objects method to return a dummy user object
@@ -153,7 +153,7 @@ class TestApp(unittest.TestCase):
        self.assertEqual(response.status_code, 200)
        self.assertEqual(response.json['message'], 'resume successfully replaced')
 
-    @patch('create_app.get_userid_from_header')
+    @patch('app.get_userid_from_header')
     @patch('app.Users.objects')
     def test_get_resume(self, mock_user_objects, mock_userid_from_header):
        # Mocking the Users.objects method to return a dummy user object
