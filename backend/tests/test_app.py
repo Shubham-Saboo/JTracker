@@ -1,5 +1,5 @@
 import unittest
-from app import create_app,get_userid_from_header,Users
+from app import create_app,Users
 from unittest.mock import patch, MagicMock
 
 from io import BytesIO
@@ -118,29 +118,9 @@ class TestApp(unittest.TestCase):
         }
         response = self.app.post('/applications',headers={"Authorization": "Bearer mock_token"}, json=payload)
         self.assertEqual(response.status_code, 500) 
-        
-#
-    # @patch('app.Users.objects')
-    # def test_upload_resume(self, mock_user_objects):
-    #     mock_user = MagicMock()
-    #     mock_user_objects.return_value = MagicMock(first=lambda: mock_user)
-        
-    #     # Assume you have a sample resume file in bytes
-    #     sample_resume = b'Sample resume content'  # Replace with your sample resume file
-        
-    #     response = self.app.post('/resume', data={'file': (BytesIO(sample_resume), 'resume.pdf')}, headers={"Authorization": "Bearer mock_token"})
-    #     self.assertEqual(response.status_code, 200)
-    
-    # @patch('app.Users.objects')
-    # def test_get_resume(self, mock_user_objects):
-    #     mock_user = MagicMock()
-    #     mock_user.resume.read.return_value = b'Sample resume content'  # Replace with sample resume content in bytes
-    #     mock_user_objects.return_value = MagicMock(first=lambda: mock_user)
-        
-    #     response = self.app.get('/resume', headers={"Authorization": "Bearer mock_token"})
-    #     self.assertEqual(response.status_code, 200)
 
-    @patch('app.get_userid_from_header')
+
+    @patch('create_app.get_userid_from_header')
     def test_get_resume_authorized(self, mock_get_userid):
         # Mock the behavior of get_userid_from_header to return a valid user ID
         mock_get_userid.return_value = 'valid_user_id'
@@ -152,7 +132,7 @@ class TestApp(unittest.TestCase):
         # Assert the response status code to ensure authorization is successful
         self.assertEqual(response.status_code, 200)
 
-    @patch('app.get_userid_from_header')
+    @patch('create_app.get_userid_from_header')
     @patch('app.Users.objects')
     def test_upload_resume(self, mock_user_objects, mock_userid_from_header):
        # Mocking the Users.objects method to return a dummy user object
@@ -173,7 +153,7 @@ class TestApp(unittest.TestCase):
        self.assertEqual(response.status_code, 200)
        self.assertEqual(response.json['message'], 'resume successfully replaced')
 
-    @patch('app.get_userid_from_header')
+    @patch('create_app.get_userid_from_header')
     @patch('app.Users.objects')
     def test_get_resume(self, mock_user_objects, mock_userid_from_header):
        # Mocking the Users.objects method to return a dummy user object
@@ -192,6 +172,19 @@ class TestApp(unittest.TestCase):
        response = self.app.get('/resume', headers={"Authorization": "Bearer mock_token"})
        self.assertEqual(response.status_code, 200)
        self.assertEqual(response.headers['x-filename'], 'resume.pdf')
+
+    
+    @patch('app.generate_pdf')
+    def test_form_builder(self, mock_generate_pdf):
+      # Mocking the generate_pdf method to return a dummy PDF data
+      mock_pdf_data = io.BytesIO(b"Test PDF Data")
+      mock_generate_pdf.return_value = mock_pdf_data
+
+      # Test the /resumebuilder route
+      response = self.app.post('/resumebuilder', json={"key1": "value1", "key2": "value2"})
+      self.assertEqual(response.status_code, 200)
+      self.assertEqual(response.headers['Content-Type'], 'application/msword')
+      self.assertEqual(response.headers['Content-Disposition'], 'attachment; filename=generated_resume.docx')
 
 
     
