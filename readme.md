@@ -198,10 +198,10 @@ The interface through which a user is able to search for specific jobs and add t
 ### Follow the following steps:
 
 - Install nvm
-- in terminal run: install node 16
+- In terminal run: install node 16
 - Restart your device
-- execute setup.sh using './setup.sh'
-- npm install yarn
+- In terminal run: ./setup.sh
+- In terminal run: npm install yarn
 
 ```
 ./setup.sh
