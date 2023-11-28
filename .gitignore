@@ -564,3 +564,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 backend/application.yml
+frontend/src/static/CoverLetter.docx
