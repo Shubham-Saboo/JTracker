@@ -107,6 +107,7 @@ The interface through which a user is able to search for specific jobs and add t
 1. Navigate to Cover letter Section
 2. Upload any detail in the form
 3. Click on Submit button to Download the cover letter file.
+(It takes 40 to 50 seconds to generate the cover letter)
 
 <p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
 
@@ -178,7 +179,7 @@ The interface through which a user is able to search for specific jobs and add t
 - Modified the SideBar and the Navigation Bar
 - Updated badges for repo
 
-#### Version 2.1.1
+#### Version 2.1.0
 
 - Minor Bug Fixes
 - Updated GitHub workflows files
