@@ -74,15 +74,11 @@ The introductory visual interface displayed from which a user is able to access 
 
 ### Side Bar
 
-<p align="center"><img width="700" src="./resources/nsideBar.PNG"></p>
-
-### Chat Box
-
-<p align="center"><img width="700" src="./resources/nchatBox.PNG"></p>
+<p align="center"><img width="700" src="./resources/nhomeScreen.PNG"></p>
 
 ### Chat Box Demo
 
-<p align="center"><img width="700" src="./resources/chatBoxDemo.jpeg"></p>
+<p align="center"><img width="700" src="./resources/newChat.jpeg"></p>
 
 ### Job search Page
 
@@ -187,10 +183,6 @@ The interface through which a user is able to search for specific jobs and add t
 - Minor Bug Fixes
 - Updated GitHub workflows files
 - Added test cases
-
-## Roadmap:
-
-![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
 
 ## Future Scope:
 
