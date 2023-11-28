@@ -89,7 +89,7 @@ export default class App extends React.Component {
                   top: "3.99vh",
                   left: "90vw",
                   // marginRight: "500px",
-                  backgroundColor: "#009970",
+                  backgroundColor: "red",
                 }}
                 onClick={this.handleLogout}
               >
