@@ -148,7 +148,10 @@ The interface through which a user is able to search for specific jobs based on 
 - Added test cases
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 ## Roadmap:
 
 ![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
