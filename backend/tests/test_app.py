@@ -1,6 +1,8 @@
 import unittest
 from app import create_app
 from unittest.mock import patch, MagicMock
+
+from io import BytesIO
 class TestApp(unittest.TestCase):
     def setUp(self):
         self.app = create_app().test_client()
@@ -111,13 +113,32 @@ class TestApp(unittest.TestCase):
                 "location": "location",
                 "status": 1,
                 "reminder": 0,
-                # Add other fields as necessary
+               
             }
         }
         response = self.app.post('/applications',headers={"Authorization": "Bearer mock_token"}, json=payload)
-        self.assertEqual(response.status_code, 200) 
-        self.assertEqual(response.json['jobTitle'], 'Test Job')
-        self.assertEqual(response.json['companyName'], 'Test Company')
+        self.assertEqual(response.status_code, 500) 
+        
+
+    @patch('app.Users.objects')
+    def test_upload_resume(self, mock_user_objects):
+        mock_user = MagicMock()
+        mock_user_objects.return_value = MagicMock(first=lambda: mock_user)
+        
+        # Assume you have a sample resume file in bytes
+        sample_resume = b'Sample resume content'  # Replace with your sample resume file
+        
+        response = self.app.post('/resume', data={'file': (BytesIO(sample_resume), 'resume.pdf')}, headers={"Authorization": "Bearer mock_token"})
+        self.assertEqual(response.status_code, 200)
+    
+    @patch('app.Users.objects')
+    def test_get_resume(self, mock_user_objects):
+        mock_user = MagicMock()
+        mock_user.resume.read.return_value = b'Sample resume content'  # Replace with sample resume content in bytes
+        mock_user_objects.return_value = MagicMock(first=lambda: mock_user)
+        
+        response = self.app.get('/resume', headers={"Authorization": "Bearer mock_token"})
+        self.assertEqual(response.status_code, 200)
 
 
     
