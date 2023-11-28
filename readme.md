@@ -1,3 +1,9 @@
+# Link to demo/walkthrough video:
+
+https://youtu.be/ogtNeTNXjyE
+<br>
+<br>
+
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/722773583.svg)](https://zenodo.org/doi/10.5281/zenodo.10211927)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
