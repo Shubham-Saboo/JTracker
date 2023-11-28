@@ -1,5 +1,3 @@
-https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-aa15-99cd752ab0cc.mp4
-
 [![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/722773583.svg)](https://zenodo.org/doi/10.5281/zenodo.10211927)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
@@ -82,6 +80,10 @@ The introductory visual interface displayed from which a user is able to access 
 
 <p align="center"><img width="700" src="./resources/nchatBox.PNG"></p>
 
+### Chat Box Demo
+
+<p align="center"><img width="700" src="./resources/chatBoxDemo.jpeg"></p>
+
 ### Job search Page
 
 The interface through which a user is able to search for specific jobs and add them to Waitlisted Applications.
@@ -94,26 +96,19 @@ The interface through which a user is able to search for specific jobs and add t
 <p align="center"><img width="700" src="./resources/njobSearch.PNG"></p>
 <p align="center"><img width="700" src="./resources/njobSearch1.PNG"></p>
 
-### SearchPage
+### Resume Builder
 
-The interface through which a user is able to search for specific jobs and add them to Waitlisted Applications.
+<p align="center"><img width="700" src="./resources/resumeBuilder.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder1.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder2.PNG"></p>
 
-1. Navigate to Job search page, search for particular Job.
-2. Click on Add button. Fill in the Details.
-3. Click on Create buttop.
-4. The application will then be saved as per the selected category.
+### Resume Builder Result
 
-<p align="center"><img width="700" src="./resources/search.png"></p>
-<p align="center"><img width="700" src="./resources/newjobdetails1.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilderResult.PNG"></p>
 
-### SearchPage with Salary filter
+### Cover Letter Generator
 
-The interface through which a user is able to search for specific jobs based on the salary range selected.
-
-1. Navigate to Job search page, search for particular Job and select the salary range from the dropdown.
-2. Click on Search button.
-
-<p align="center"><img width="700" src="./resources/salaryfilter1.png"></p>
+<p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
 
 ### ResumePage
 
@@ -167,19 +162,6 @@ The interface through which a user is able to search for specific jobs based on 
 - Minor Bug Fixes
 - Updated GitHub workflows files
 - Added test cases
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-
-> > > > > > > Stashed changes
-
-## Roadmap:
-
-![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
-
-> > > > > > > Stashed changes
 
 ## Future Scope:
 

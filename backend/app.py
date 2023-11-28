@@ -767,7 +767,68 @@ def create_app():
         except Exception as e:
             print(f"Error processing form data: {str(e)}")
             return "Error processing form data", 500
-    
+
+    def generate_word(data):
+        doc = Document()
+        # Set page margins to fit within one page
+        sections = doc.sections
+        for section in sections:
+            section.left_margin = Pt(36)  # 0.5 inch
+            section.right_margin = Pt(36)  # 0.5 inch
+            section.top_margin = Pt(36)  # 0.5 inch
+            section.bottom_margin = Pt(36)  # 0.5 inch
+
+        # Helper function to add heading with format
+        def add_heading_with_format(doc, text, font_size=16, is_bold=True):
+            p = doc.add_paragraph()
+            run = p.add_run(text)
+            if is_bold:
+                run.bold = True
+            p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            run.font.size = Pt(font_size)
+
+        
+        # Title
+        add_heading_with_format(doc, "Cover Letter", font_size=18, is_bold=True)
+
+        # Contact Information
+        add_heading_with_format(doc, "Contact Information", font_size=16, is_bold=True)
+        prompt = "Generate a cover letter for the role of" + data["role"] + " to apply in the company " + data["company"]+ " while highlighting my skills " + data["skill1"] + "and" + data["skill2"] 
+        message = [ {"role": "system", "content": prompt} ]
+        chat = openai.ChatCompletion.create( 
+        model="gpt-3.5-turbo", messages=message
+        ) 
+        reply = chat.choices[0].message.content
+        doc.add_paragraph(reply)
+
+        # Save the document to a .docx file
+
+        word_buffer = BytesIO()
+        output_file_path = "generated_cover_letter.docx"
+        doc.save(word_buffer)
+        word_buffer.seek(0)
+        return word_buffer
+
+    @app.route('/coverletter', methods=['POST'])
+    def form_builder():
+        try:
+            # Assuming the request data is in JSON format
+            data = request.json
+            # Log the data (you can customize this part)
+            print("Received Form Data:")
+            for key, value in data.items():
+                print(f"{key}: {value}")
+            
+            # Generate PDF
+            word_data = generate_word(data)
+            # Send the PDF file as a response
+            return send_file(word_data, mimetype='application/msword', as_attachment=True,
+                            attachment_filename='generated_cover_letter.docx')   
+
+        except Exception as e:
+            print(f"Error processing form data: {str(e)}")
+            return "Error processing form data", 500
+            
     @app.route('/openai-interact', methods=['POST'])
     def openai_interact():
         try:
