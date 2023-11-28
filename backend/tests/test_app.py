@@ -1,9 +1,6 @@
-from flask import json
-from app import create_app, Users
+import unittest
+from app import create_app
 from unittest.mock import patch, MagicMock
-import io
-import PyPDF2
-
 
 from io import BytesIO
 class TestApp(unittest.TestCase):
@@ -143,7 +140,7 @@ class TestApp(unittest.TestCase):
     #     response = self.app.get('/resume', headers={"Authorization": "Bearer mock_token"})
     #     self.assertEqual(response.status_code, 200)
 
-    @patch('your_app.get_userid_from_header')
+    @patch('app.get_userid_from_header')
     def test_get_resume_authorized(self, mock_get_userid):
         # Mock the behavior of get_userid_from_header to return a valid user ID
         mock_get_userid.return_value = 'valid_user_id'
@@ -155,12 +152,7 @@ class TestApp(unittest.TestCase):
         # Assert the response status code to ensure authorization is successful
         self.assertEqual(response.status_code, 200)
     
-    @patch('app.get_userid_from_header')
-    @patch('app.openai.ChatCompletion.create')
-    @patch('app.PyPDF2.PdfReader')
-    @patch('app.Users.objects')
-    def test_recommend_resume(self, mock_user_objects, mock_pdf_reader, mock_chat_completion, mock_userid_from_header):
-       
+    def test_upload_resume(self, mock_user_objects, mock_userid_from_header):
        # Mocking the Users.objects method to return a dummy user object
        dummy_user = {
            "resume": io.BytesIO(b"Test Resume"),
@@ -173,18 +165,35 @@ class TestApp(unittest.TestCase):
        }
        mock_user_objects.return_value = MagicMock(first=lambda: dummy_user)
 
-       # Mocking the PyPDF2.PdfReader method to return a dummy PDF content
-       mock_pdf_content = MagicMock()
-       mock_pdf_content.pages = [MagicMock(extract_text=lambda: "Test Resume Content")]
-       mock_pdf_reader.return_value = mock_pdf_content
-
-       # Mocking the openai.ChatCompletion.create method to return a dummy recommendation
-       mock_chat_completion.return_value.choices = [MagicMock(message=MagicMock(content="Test Recommendation"))]
-
-       # Test the /recommend route
-       response = self.app.get('/recommend', headers={"Authorization": "Bearer mock_token"})
+       # Test the /resume (POST) route
+       with open('test_resume.pdf', 'rb') as f:
+           response = self.app.post('/resume', headers={"Authorization": "Bearer mock_token"}, data={'file': f})
        self.assertEqual(response.status_code, 200)
-       self.assertEqual(response.json, "Test Recommendation")
+       self.assertEqual(response.json['message'], 'resume successfully replaced')
+
+    @patch('app.get_userid_from_header')
+    @patch('app.Users.objects')
+    def test_get_resume(self, mock_user_objects, mock_userid_from_header):
+       # Mocking the Users.objects method to return a dummy user object
+       dummy_user = {
+           "resume": io.BytesIO(b"Test Resume"),
+           "username": "test_user",
+           "fullName": "Test User",
+           "email": "test@example.com",
+           "skills": ["Python", "Flask"],
+           "workExperience": ["Test Work Experience"],
+           "education": ["Test Education"]
+       }
+       mock_user_objects.return_value = MagicMock(first=lambda: dummy_user)
+
+       # Test the /resume (GET) route
+       response = self.app.get('/resume', headers={"Authorization": "Bearer mock_token"})
+       self.assertEqual(response.status_code, 200)
+       self.assertEqual(response.headers['x-filename'], 'resume.pdf')
+
+
+    
+    
 
 
     
