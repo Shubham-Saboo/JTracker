@@ -65,7 +65,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<p align="center"><img width="700" src="./resources/login.png"></p>
+<p align="center"><img width="700" src="./resources/nlogin.png"></p>
 
 ### HomeScreen
 
@@ -121,29 +121,38 @@ The interface through which a user is able to search for specific jobs based on 
 ### Cover Letter Generator
 
 1. Fill in the Role, Company and the skills that you want to highlight in your cover letter
-2. OpenAI API generates a cover letter  which is returned as a doc file
+2. OpenAI API generates a cover letter which is returned as a doc file
 3. Click on the download button to download your cover letter
 
 <p align="center"><img width="700" src="./resources/recommendations.png"></p>
 ### Whats New
 
 #### Version 2.0.0
+
 - Major bug fixes for the job search feature
 - Implemented an interactive ChatBot to solve user queries
 - Added a new feature to build a resume in a word file from user input
 - Used the OpenAI API to generate the cover letter for a specific company and Job Role
 
 #### Version 2.0.1
+
 - Enhanced the UI of the application with major upgrades
 - Added a Set Reminder function for wishlist applications
 - Modified the SideBar and the Navigation Bar
 - Updated badges for repo
 
 #### Version 2.1.1
+
 - Minor Bug Fixes
 - Updated GitHub workflows files
 - Added test cases
 
+<<<<<<< Updated upstream
+=======
+## Roadmap:
+
+![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
+>>>>>>> Stashed changes
 
 ## Future Scope:
 
@@ -227,7 +236,7 @@ mongod
 
 1. [Create account](https://account.mongodb.com/account/register) for MongoDB
 
-** **_If current MongoDB Atlas owner adds your username/password to the cluster, skip to step 4_** **
+\*\* **_If current MongoDB Atlas owner adds your username/password to the cluster, skip to step 4_** \*\*
 
 2. Follow MongoDB Atlas [Setup Guide](https://docs.atlas.mongodb.com/getting-started/) to create a database collection for hosting applications
 3. In `app.py` set `'host'` string to your MongoDB Atlas connection string
