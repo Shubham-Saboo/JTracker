@@ -29,7 +29,7 @@ import json
 import certifi
 import requests
 from email.message import EmailMessage
-
+#import schedule
 from threading import Thread
 import time
 import smtplib
