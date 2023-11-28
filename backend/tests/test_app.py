@@ -19,8 +19,8 @@ class TestApp(unittest.TestCase):
             "fullName": "Test User",
             "email": "test@example.com",
             "skills": ["Python", "Flask"],
-            "education": "Test Education",
-            "workExperience": "Test Work Experience"
+            "education": ["Test Education"],
+            "workExperience": ["Test Work Experience"]
         }
         response = self.app.post('/users/signup', json=payload)
         self.assertEqual(response.status_code, 200)
