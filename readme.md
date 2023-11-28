@@ -90,7 +90,7 @@ The interface through which a user is able to search for specific jobs and add t
 
 1. Navigate to Job search page, search for particular Job.
 2. Click on Add button. Fill in the Details.
-3. Click on Create buttop.
+3. Click on Create button.
 4. The application will then be saved as per the selected category.
 
 <p align="center"><img width="700" src="./resources/njobSearch.PNG"></p>
@@ -114,7 +114,7 @@ The interface through which a user is able to search for specific jobs and add t
 
 <p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
 
-### Cover Letter Generator
+### Cover Letter Generator Demo
 
 <p align="center"><img width="700" src="./resources/coverLetterDemo.jpeg"></p>
 
