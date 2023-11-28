@@ -106,29 +106,16 @@ The interface through which a user is able to search for specific jobs based on 
 
 ### Whats New
 
-#### Version 1.1
+#### Version 2.0.0
+- Major bug fixes for the job search feature
+- Implemented a ChatBot to solve user queries
+- Added a feature to build a resume in a word file from user input
+- Used the OpenAI API to generate the cover letter for a specific company and Job Role
 
-- Add headless feature for selenium
-- Fix shutdown.sh
-- Login frontend
-- Add resume storage for users
-- Updated reloading issues
-- Fix linting issues
-
-#### Version 1.0.3
-
-- Updated badges for repository
-- Users database implementation
-- Add logout endpoint and update middleware
-- Implementing search based on salary functionality
-- Login frontend for login and signup functionality
-- Search custom date
-
-#### Version 1.1.1
-
-- Added intelligent job recommendations based on OpenAI ChatGPT's API response
-- Used the OpenAI API to analyze resume uploaded by user and intelligently recommend companies to apply to
-- Updated badges for repository
+#### Version 2.0.1
+- Enhanced the UI of the application with major changes
+- Added a Set Reminder function for different applications
+- Updated badges for repo
 - Updated GitHub workflows files
 
 **Job Recommendations Video (Added in Version 1.1.1)**
