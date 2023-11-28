@@ -84,7 +84,7 @@ The introductory visual interface displayed from which a user is able to access 
 
 ### Chat Box Demo
 
-<p align="center"><img width="700" src="./resources/chatBoxDemo.PNG"></p>
+<p align="center"><img width="700" src="./resources/chatBoxDemo.jpeg"></p>
 
 ### Job search Page
 
@@ -107,15 +107,6 @@ The interface through which a user is able to search for specific jobs and add t
 ### Resume Builder Result
 
 <p align="center"><img width="700" src="./resources/resumeBuilderResult.PNG"></p>
-
-### SearchPage with Salary filter
-
-The interface through which a user is able to search for specific jobs based on the salary range selected.
-
-1. Navigate to Job search page, search for particular Job and select the salary range from the dropdown.
-2. Click on Search button.
-
-<p align="center"><img width="700" src="./resources/salaryfilter1.png"></p>
 
 ### ResumePage
 
@@ -169,19 +160,6 @@ The interface through which a user is able to search for specific jobs based on 
 - Minor Bug Fixes
 - Updated GitHub workflows files
 - Added test cases
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-
-> > > > > > > Stashed changes
-
-## Roadmap:
-
-![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
-
-> > > > > > > Stashed changes
 
 ## Future Scope:
 
