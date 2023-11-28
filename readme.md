@@ -64,16 +64,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
 # <p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
-
-<p align="center"><img width="700" src="./resources/nlogin.png"></p>
->>>>>>> Stashed changes
-=======
-<p align="center"><img width="700" src="./resources/nlogin.png"></p>
->>>>>>> Stashed changes
 
 ### HomeScreen
 
@@ -117,17 +108,29 @@ The interface through which a user is able to search for specific jobs and add t
 
 ### Cover Letter Generator
 
+1. Navigate to Cover letter Section
+2. Upload any detail in the form
+3. Click on Submit button to Download the cover letter file.
+
 <p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
 
 ### Cover Letter Generator
 
-<p align="center"><img width="700" src="./resources/coverLetterDemo.PNG"></p>
+<p align="center"><img width="700" src="./resources/coverLetterDemo.jpeg"></p>
 
 ### Manage Resume Page
+
+1. Navigate to resume Section
+2. Upload any resume file with .PDF extension by selecting the file from local storage. Click Upload.
+3. Click on download button to Download the uploaded file.
 
 <p align="center"><img width="700" src="./resources/manageResume.PNG"></p>
 
 ### Job Recommender Page
+
+1. Assuming that you have uploaded your resume on the resume page
+2. Click on the get recommendations button
+3. View the recommended companies returned by ChatGPT API
 
 <p align="center"><img width="700" src="./resources/njobRecommender.jpeg"></p>
 
