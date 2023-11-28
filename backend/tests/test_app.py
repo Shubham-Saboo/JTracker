@@ -1,15 +1,15 @@
-# # """
-# # Test module for the backend
-# # """
-# import hashlib
-# from io import BytesIO
+# """
+# Test module for the backend
+# """
+import hashlib
+from io import BytesIO
 
-# import pytest
-# import json
-# import datetime
-# from flask_mongoengine import MongoEngine
-# import yaml
-# from app import create_app
+import pytest
+import json
+import datetime
+from flask_mongoengine import MongoEngine
+import yaml
+from app import create_app
 
 
 # # # Pytest fixtures are useful tools for calling resources
@@ -18,31 +18,31 @@
 # # # unless defined as such.
 # # # This fixture receives the client returned from create_app
 # # # in app.py
-# # @pytest.fixture
+@pytest.fixture
 
 
 
-# # # 1. testing if the flask app is running properly
-# # def test_alive(client):
-# #     """
-# #     Tests that the application is running properly
+# 1. testing if the flask app is running properly
+def test_alive(client):
+    """
+    Tests that the application is running properly
 
-# #     :param client: mongodb client
-# #     """
-# #     rv = client.get("/")
-# #     assert rv.data.decode("utf-8") == '{"message":"Server up and running"}\n'
+    :param client: mongodb client
+    """
+    rv = client.get("/")
+    assert rv.data.decode("utf-8") == '{"message":"Server up and running"}\n'
 
 
-# # # 2. testing if the search function running properly
-# # def test_search(client):
-# #     """
-# #     Tests that the search is running properly
+# 2. testing if the search function running properly
+def test_search(client):
+    """
+    Tests that the search is running properly
 
-# #     :param client: mongodb client
-# #     """
-# #     rv = client.get("/search")
-# #     jdata = json.loads(rv.data.decode("utf-8"))["label"]
-# #     assert jdata == "successful test search"
+    :param client: mongodb client
+    """
+    rv = client.get("/search")
+    jdata = json.loads(rv.data.decode("utf-8"))["label"]
+    assert jdata == "successful test search"
 
 
 # # # 3. testing if the application is getting data from database properly
@@ -276,39 +276,39 @@
 
 # if __name__ == '__main__':
 #     unittest.main()
-import unittest
-from unittest.mock import patch
-from app import create_app
+# import unittest
+# from unittest.mock import patch
+# from app import create_app
 
-class TestApp(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app().test_client()
-        self.app.testing = True
+# class TestApp(unittest.TestCase):
+#     def setUp(self):
+#         self.app = create_app().test_client()
+#         self.app.testing = True
 
-    @patch('app.Users.objects')  # Mock the database interaction
-    def test_get_profile(self, mock_users_objects):
-        # Prepare mocked data
-        mock_user = {
-            "applications": [],
-            "username": "test_user",
-            "fullName": "Test User",
-            "email": "test@example.com",
-            "skills": ["Python", "Flask"],
-            "workExperience": "Test Work Experience",
-            "education": "Test Education"
-            # Add other fields as needed
-        }
-        # Mock the return value of Users.objects
-        mock_users_objects.return_value = [mock_user]
+#     @patch('app.Users.objects')  # Mock the database interaction
+#     def test_get_profile(self, mock_users_objects):
+#         # Prepare mocked data
+#         mock_user = {
+#             "applications": [],
+#             "username": "test_user",
+#             "fullName": "Test User",
+#             "email": "test@example.com",
+#             "skills": ["Python", "Flask"],
+#             "workExperience": "Test Work Experience",
+#             "education": "Test Education"
+#             # Add other fields as needed
+#         }
+#         # Mock the return value of Users.objects
+#         mock_users_objects.return_value = [mock_user]
 
-        # Make a request to the endpoint that uses the mocked database
-        response = self.app.get('/users/profile',
-                                headers={'Authorization': 'Bearer mock_token'})
+#         # Make a request to the endpoint that uses the mocked database
+#         response = self.app.get('/users/profile',
+#                                 headers={'Authorization': 'Bearer mock_token'})
         
-        # Assertions based on the expected behavior with mocked data
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json['fullname'], 'Test User')
-        # Add more assertions as needed
+#         # Assertions based on the expected behavior with mocked data
+#         self.assertEqual(response.status_code, 200)
+#         self.assertEqual(response.json['fullname'], 'Test User')
+#         # Add more assertions as needed
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
