@@ -113,9 +113,13 @@ The interface through which a user is able to search for specific jobs based on 
 
 ### Resume Builder
 
-<p align="center"><img width="700" src="./resources/resumeBuilder.png"></p>
-<p align="center"><img width="700" src="./resources/resumeBuilder1.png"></p>
-<p align="center"><img width="700" src="./resources/resumeBuilder2.png"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder1.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder2.PNG"></p>
+
+### Resume Builder Result
+
+<p align="center"><img width="700" src="./resources/resumeBuilderResult.PNG"></p>
 
 ### Recommendations Page
 
