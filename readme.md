@@ -106,6 +106,10 @@ The interface through which a user is able to search for specific jobs and add t
 
 <p align="center"><img width="700" src="./resources/resumeBuilderResult.PNG"></p>
 
+### Cover Letter Generator
+
+<p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
+
 ### ResumePage
 
 1. Navigate to resume Section
