@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-<<<<<<< Updated upstream
-=======
-// import { AppBar,   Toolbar, Typography, IconButton } from "@material-ui/core";
->>>>>>> Stashed changes
 import UserProfile from "../profile/ProfilePage";
 import "../static/navbar.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaUser } from "react-icons/fa";
 
 class Navbar extends Component {
   handleProfileClick = () => {
+    this.props.switchPage("UserProfile"); // Navigate to UserProfile component
     this.props.switchPage("UserProfile"); // Navigate to UserProfile component
   };
 
