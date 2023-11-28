@@ -127,7 +127,7 @@ The interface through which a user is able to search for specific jobs and add t
 
 <p align="center"><img width="700" src="./resources/njobRecommender.jpeg"></p>
 
-### ResumePage
+<!-- ### ResumePage
 
 1. Navigate to resume Section
 2. Upload any resume file with .PDF extension by selecting the file from local storage. Click Upload.
@@ -157,7 +157,8 @@ The interface through which a user is able to search for specific jobs and add t
 2. OpenAI API generates a cover letter which is returned as a doc file
 3. Click on the download button to download your cover letter
 
-<p align="center"><img width="700" src="./resources/recommendations.png"></p>
+<p align="center"><img width="700" src="./resources/recommendations.png"></p> -->
+
 ### Whats New
 
 #### Version 2.0.0
