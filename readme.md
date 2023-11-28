@@ -65,9 +65,13 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 # <p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
 
+<p align="center"><img width="700" src="./resources/nlogin.png"></p>
+>>>>>>> Stashed changes
+=======
 <p align="center"><img width="700" src="./resources/nlogin.png"></p>
 >>>>>>> Stashed changes
 
