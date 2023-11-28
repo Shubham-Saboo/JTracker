@@ -68,8 +68,8 @@ class TestApp(unittest.TestCase):
             'fullname': 'Test User',
             'email': 'test@example.com',
             'skills': ['Python', 'Flask'],
-            'workExp': 'Test Work Experience',
-            'edu': 'Test Education'
+            'workExp': ['Test Work Experience'],
+            'edu': ['Test Education']
         }
         self.assertEqual(response.json, expected_stats)
 
