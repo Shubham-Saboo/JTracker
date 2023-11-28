@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-
 [![Downloads](https://img.shields.io/github/downloads/Shubham-Saboo/JTracker/total)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Release](https://img.shields.io/github/v/release/Shubham-Saboo/JTracker)](https://gitHub.com/Shubham-Saboo/JTracker)
 
-# J-Tracker - Your Job Tracking Assistant
+# Job-Tracker - Your Job Tracking Assistant
 
 https://user-images.githubusercontent.com/43064854/135554150-c06afd4e-d223-47e3-b123-b45f9cd1b87a.mp4
 
@@ -24,7 +24,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 ## Table of contents
 
-- [J-Tracker - Your Job Tracking Assistant](#j-tracker---your-job-tracking-assistant)
+- [Job-Tracker - Your Job Tracking Assistant](#j-tracker---your-job-tracking-assistant)
   - [Table of contents](#table-of-contents)
   - [Basic Design:](#basic-design)
   - [Samples:](#samples)
@@ -40,9 +40,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
       - [Version 2.0.0](#version-200)
       - [Version 2.0.1](#version-201)
       - [Version 2.1.0](#version-211)
-  - [Roadmap:](#roadmap)
   - [Future Scope:](#future-scope)
-  - [Explanation:](#explanation)
   - [Technologies Used:](#technologies-used)
   - [Installation:](#installation)
     - [Requirements:](#requirements)
@@ -147,10 +145,6 @@ The interface through which a user is able to search for specific jobs based on 
 - Added test cases
 
 
-## Roadmap:
-
-![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
-
 ## Future Scope:
 
 - Add a feature that allows users to attach the wishlist reminders to their Google calendar.
@@ -161,17 +155,6 @@ The interface through which a user is able to search for specific jobs based on 
 - Direct connection to LinkedIn, allowing for the addition of job opportunities to the wishlist.
 - Improve keyword search to improve specifications such as pay range, employment location, and so on.
 - An option to maintain separate profiles for job tracking.
-
-## Explanation:
-
-Currently, we have four fundamental steps in our project:
-
-1. The position for which you have applied
-2. The job you want to apply for, without a referral
-3. The job at which you have faced rejection, and
-4. The job you're waiting for a referral.
-
-Any details in any table can be modified at any time during the process.
 
 ## Technologies Used:
 
@@ -272,7 +255,10 @@ Please see our CONTRIBUTING.md for instructions on how to contribute to the repo
 
 ## Team Members (Group 53)
 
-- Shubham Amit Saboo
-- Vibhav Deo
-- Rajat Chandak
-- Chinmay Nayak
+<center>
+  <table>
+    <tr>
+        <td align="center"><img src="https://github.com/VibhavDeo/FitnessApp/blob/main/static/img/IMG-8118.jpg" width="300px;" alt=""/><br /><sub><b>Left to Right -  <a href="https://github.com/nayaksyndrome">Chinmay Nayak</a>,  <a href="https://github.com/Shubham-Saboo">Shubham Saboo</a>, <a href="https://github.com/RajatChandak2000">  Rajat Chandak</a>,  <a href="https://github.com/VibhavDeo">Vibhav Deo</a></b></sub><br /></td>
+    </tr>
+  </table>
+</center>
