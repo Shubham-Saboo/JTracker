@@ -32,11 +32,6 @@ export default class CardBoard extends Component {
       },
       credentials: "include",
     });
-    // getApplications().then((res) => {
-
-    // }).catch((error) => {
-    //         alert("Error while retrieving applications");
-    //     })
   }
 
   componentDidMount() {
