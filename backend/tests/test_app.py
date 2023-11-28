@@ -105,11 +105,17 @@ class TestApp(unittest.TestCase):
             "application": {
                 "jobTitle": "Test Job",
                 "companyName": "Test Company",
+                "companyName": "abc",
+                "date": "21/10/2000",
+                "jobLink":"google.com",
+                "location": "location",
+                "status": 1,
+                "reminder": 0,
                 # Add other fields as necessary
             }
         }
         response = self.app.post('/applications',headers={"Authorization": "Bearer mock_token"}, json=payload)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200) 
         self.assertEqual(response.json['jobTitle'], 'Test Job')
         self.assertEqual(response.json['companyName'], 'Test Company')
 
