@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/722773583.svg)](https://zenodo.org/doi/10.5281/zenodo.10211927)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/Shubham-Saboo/JTracker)
