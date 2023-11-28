@@ -9,7 +9,7 @@
 [![language_count](https://img.shields.io/github/languages/count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Downloads](https://img.shields.io/github/downloads/Shubham-Saboo/JTracker/total)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Release](https://img.shields.io/github/v/release/Shubham-Saboo/JTracker)](https://gitHub.com/Shubham-Saboo/JTracker)
-[![codecov](https://codecov.io/gh/Shubham-Saboo/JTracker/branch/main/graph/badge.svg)](https://codecov.io/gh/Shubham-Saboo/JTracker)
+[![Code Coverage](https://github.com/Shubham-Saboo/JTracker/actions/workflows/code_cov.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/code_cov.yml)
 [![Lint](https://github.com/Shubham-Saboo/JTracker/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/syntax_checker.yml)
 [![Python Style Checker](https://github.com/Shubham-Saboo/JTracker/actions/workflows/style_checker.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/style_checker.yml)
 
