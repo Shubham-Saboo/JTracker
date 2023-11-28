@@ -1,4 +1,10 @@
-[![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
+# Link to demo/walkthrough video:
+
+https://youtu.be/ogtNeTNXjyE
+<br>
+<br>
+
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/722773583.svg)](https://zenodo.org/doi/10.5281/zenodo.10211927)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/Shubham-Saboo/JTracker)
@@ -64,16 +70,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
 # <p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
-
-<p align="center"><img width="700" src="./resources/nlogin.png"></p>
->>>>>>> Stashed changes
-=======
-<p align="center"><img width="700" src="./resources/nlogin.png"></p>
->>>>>>> Stashed changes
 
 ### HomeScreen
 
@@ -83,15 +80,11 @@ The introductory visual interface displayed from which a user is able to access 
 
 ### Side Bar
 
-<p align="center"><img width="700" src="./resources/nsideBar.PNG"></p>
-
-### Chat Box
-
-<p align="center"><img width="700" src="./resources/nchatBox.PNG"></p>
+<p align="center"><img width="700" src="./resources/nhomeScreen.PNG"></p>
 
 ### Chat Box Demo
 
-<p align="center"><img width="700" src="./resources/chatBoxDemo.jpeg"></p>
+<p align="center"><img width="700" src="./resources/newChat.jpeg"></p>
 
 ### Job search Page
 
@@ -99,7 +92,7 @@ The interface through which a user is able to search for specific jobs and add t
 
 1. Navigate to Job search page, search for particular Job.
 2. Click on Add button. Fill in the Details.
-3. Click on Create buttop.
+3. Click on Create button.
 4. The application will then be saved as per the selected category.
 
 <p align="center"><img width="700" src="./resources/njobSearch.PNG"></p>
@@ -117,17 +110,30 @@ The interface through which a user is able to search for specific jobs and add t
 
 ### Cover Letter Generator
 
+1. Navigate to Cover letter Section
+2. Upload any detail in the form
+3. Click on Submit button to Download the cover letter file.
+(It takes 40 to 50 seconds to generate the cover letter)
+
 <p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
 
-### Cover Letter Generator
+### Cover Letter Generator Demo
 
-<p align="center"><img width="700" src="./resources/coverLetterDemo.PNG"></p>
+<p align="center"><img width="700" src="./resources/coverLetterDemo.jpeg"></p>
 
 ### Manage Resume Page
+
+1. Navigate to resume Section
+2. Upload any resume file with .PDF extension by selecting the file from local storage. Click Upload.
+3. Click on download button to Download the uploaded file.
 
 <p align="center"><img width="700" src="./resources/manageResume.PNG"></p>
 
 ### Job Recommender Page
+
+1. Assuming that you have uploaded your resume on the resume page
+2. Click on the get recommendations button
+3. View the recommended companies returned by ChatGPT API
 
 <p align="center"><img width="700" src="./resources/njobRecommender.jpeg"></p>
 
@@ -179,15 +185,11 @@ The interface through which a user is able to search for specific jobs and add t
 - Modified the SideBar and the Navigation Bar
 - Updated badges for repo
 
-#### Version 2.1.1
+#### Version 2.1.0
 
 - Minor Bug Fixes
 - Updated GitHub workflows files
 - Added test cases
-
-## Roadmap:
-
-![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
 
 ## Future Scope:
 
