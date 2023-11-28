@@ -55,7 +55,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact","/set_reminder"]
+existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact","/set_reminder","/coverletter"]
 
 
 def reminder_email():
@@ -810,7 +810,7 @@ def create_app():
         return word_buffer
 
     @app.route('/coverletter', methods=['POST'])
-    def form_builder():
+    def form_builderr():
         try:
             # Assuming the request data is in JSON format
             data = request.json
