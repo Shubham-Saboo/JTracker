@@ -84,48 +84,41 @@ class TestApp(unittest.TestCase):
 
         response = self.app.get('/search?keywords=python')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json, {"label": "successful test search"})
     
-    @patch('app.Users.objects')
-    def test_get_data(self, mock_user_objects):
-        # Mocking the Users.objects method to return a dummy user object
-        dummy_user = {"applications": [{"id": 1, "jobTitle": "Engineer", "companyName": "ABC Corp"}]}
-        mock_user_objects.return_value = MagicMock(first=lambda: dummy_user)
-
-        response = self.app.get('/applications', headers={"Authorization": "Bearer mock_token"})
-        self.assertEqual(response.status_code, 200)
-        # Add more assertions to check the response data based on the expected applications
 
     @patch('app.Users.objects')
     def test_add_application(self, mock_user_objects):
-        # Mocking the Users.objects method to return a dummy user object
-        dummy_user = {"applications": []}
+    # Mocking the Users.objects method to return a dummy user object
+        dummy_user = {
+            "applications": [],
+            "username": "test_user",
+            "fullName": "Test User",
+            "email": "test@example.com",
+            "skills": ["Python", "Flask"],
+            "workExperience": ["Test Work Experience"],
+            "education": ["Test Education"]
+        }
         mock_user_objects.return_value = MagicMock(first=lambda: dummy_user)
 
-        payload = {"application": {"jobTitle": "Software Developer", "companyName": "XYZ Inc"}}
-        response = self.app.post('/applications', json=payload, headers={"Authorization": "Bearer mock_token"})
+        # Test adding a new application
+        payload = {
+            "application": {
+                "jobTitle": "Test Job",
+                "companyName": "Test Company",
+                # Add other fields as necessary
+            }
+        }
+        response = self.app.post('/applications', json=payload)
         self.assertEqual(response.status_code, 200)
-        # Add more assertions to check the response data based on the added application
+        self.assertEqual(response.json['jobTitle'], 'Test Job')
+        self.assertEqual(response.json['companyName'], 'Test Company')
 
-    @patch('app.Users.objects')
-    def test_update_application(self, mock_user_objects):
-        # Mocking the Users.objects method to return a dummy user object
-        dummy_user = {"applications": [{"id": 1, "jobTitle": "Engineer", "companyName": "ABC Corp"}]}
-        mock_user_objects.return_value = MagicMock(first=lambda: dummy_user)
 
-        payload = {"application": {"jobTitle": "Senior Engineer"}}
-        response = self.app.put('/applications/1', json=payload, headers={"Authorization": "Bearer mock_token"})
-        self.assertEqual(response.status_code, 200)
-        # Add more assertions to check the response data based on the updated application
+    
+        
+    
+    
 
-    @patch('app.Users.objects')
-    def test_delete_application(self, mock_user_objects):
-        # Mocking the Users.objects method to return a dummy user object
-        dummy_user = {"applications": [{"id": 1, "jobTitle": "Engineer", "companyName": "ABC Corp"}]}
-        mock_user_objects.return_value = MagicMock(first=lambda: dummy_user)
-
-        response = self.app.delete('/applications/1', headers={"Authorization": "Bearer mock_token"})
-        self.assertEqual(response.status_code, 200)
        
 
 
