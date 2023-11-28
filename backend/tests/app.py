@@ -801,16 +801,16 @@ def create_app():
 
 
 app = create_app()
-# with open("application.yml") as f:
-#     info = yaml.load(f, Loader=yaml.FullLoader)
-#     username = info["username"]
-#     password = info["password"]
-#     app.config["MONGODB_SETTINGS"] = {
-#         "db": "appTracker",
-#         "host": "mongodb://localhost:27017/",
-#     }
-# db = MongoEngine()
-# db.init_app(app)
+with open("application.yml") as f:
+    info = yaml.load(f, Loader=yaml.FullLoader)
+    username = info["username"]
+    password = info["password"]
+    app.config["MONGODB_SETTINGS"] = {
+        "db": "appTracker",
+        "host": "mongodb://localhost:27017/",
+    }
+db = MongoEngine()
+db.init_app(app)
 
 
 class Users(db.Document):
