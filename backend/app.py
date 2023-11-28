@@ -1,5 +1,16 @@
+
 """
-The flask application for our program
+Copyright (c) 2023 Rajat Chandak, Shubham Saboo, Vibhav Deo, Chinmay Nayak
+This code is licensed under MIT license (see LICENSE for details)
+
+@author: JobTracker
+
+
+This python file is used in and is part of the JobTracker project.
+
+For more information about the JobTracker project, visit:
+https://github.com/Shubham-Saboo/JTracker
+
 """
 # importing required python libraries
 from flask import Flask, jsonify, request, send_file, redirect, url_for, session
@@ -48,6 +59,9 @@ existing_endpoints = ["/applications", "/resume","/recommend","/openai-interact"
 
 
 def reminder_email():
+    """
+    reminder_email() function sends a notification to every user who has opted for notification remminder for applying to the application is wishlist.
+    """
     try:
         # time.sleep(10)
         server = smtplib.SMTP_SSL("smtp.gmail.com",465)
@@ -215,14 +229,18 @@ def create_app():
     @app.route("/")
     @cross_origin()
     def health_check():
+        """
+        Checks the health of the server
+        :return: JSON object
+        """
         return jsonify({"message": "Server up and running"}), 200
     
     @app.route('/users/profile', methods=["GET","POST"])
     def get_profile():
-        # Retrieve user's applications from MongoDB using user_id
-        # user = users_collection.find_one({'id': user_id})
-        # if user:
-        print('abcd')
+        """
+        Fecthes profile information from the database for displaying on the profile page
+        :return: JSON object
+        """
         userid = get_userid_from_header()
         user = Users.objects(id=userid).first()
         applications = user["applications"]
@@ -246,15 +264,12 @@ def create_app():
             'email': email,
         }
         return jsonify(stats)
-        # else:
-        #     return jsonify({'message': 'User not found'}), 404
     
 
     @app.route("/users/signup", methods=["POST"])
     def sign_up():
         """
         Creates a new user profile and adds the user to the database and returns the message
-
         :return: JSON object
         """
         try:
@@ -269,13 +284,10 @@ def create_app():
                 return jsonify({"error": "Missing fields in input"}), 400
 
             username_exists = Users.objects(username=data["username"])
-            print("herer")
             if len(username_exists) != 0:
                 return jsonify({"error": "Username already exists"}), 400
             password = data["password"]
             password_hash = hashlib.md5(password.encode())
-            print("hereawdawdar")
-            print(data)
             user = Users(
                 id=get_new_user_id(),
                 fullName=data["fullName"],
@@ -288,38 +300,16 @@ def create_app():
                 authTokens=[],
                 applications=[],
             )
-            print("here12123r")
             user.save()
-            print("herer22222")
             return jsonify(user.to_json()), 200
         except Exception as e:
             print(e)
             return jsonify({"error": "Internal server error"}), 500
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     @app.route("/users/login", methods=["POST"])
     def login():
         """
         Logs in the user and creates a new authorization token and stores in the database
-
         :return: JSON object with status and message
         """
         try:
@@ -350,7 +340,6 @@ def create_app():
     def logout():
         """
         Logs out the user and deletes the existing token from the database
-
         :return: JSON object with status and message
         """
         try:
@@ -368,15 +357,10 @@ def create_app():
         except:
             return jsonify({"error": "Internal server error"}), 500
 
-    # search function
-    # params:
-    #   -keywords: string
-    #________________________________________________________________________________________________________________-
     @app.route("/search")
     def search():
         """
         Searches the web and returns the job postings for the given search filters
-
         :return: JSON object with job results
         """
         keywords = (
@@ -434,13 +418,10 @@ def create_app():
             job_data.loc[job_data[column].isnull(), [column]] = job_data.loc[job_data[column].isnull(), column].apply(lambda x: [])
         return jsonify(job_data.to_dict("records"))
 
-#____________________________________________________________________________________________________________________________________________   
-    # get data from the CSV file for rendering root page
     @app.route("/applications", methods=["GET"])
     def get_data():
         """
         Gets user's applications data from the database
-
         :return: JSON object with application data
         """
         try:
@@ -455,7 +436,6 @@ def create_app():
     def add_application():
         """
         Add a new job application for the user
-
         :return: JSON object with status and message
         """
         try:
@@ -489,7 +469,6 @@ def create_app():
     def update_application(application_id):
         """
         Updates the existing job application for the user
-
         :param application_id: Application id to be modified
         :return: JSON object with status and message
         """
@@ -528,7 +507,6 @@ def create_app():
     def delete_application(application_id):
         """
         Deletes the given job application for the user
-
         :param application_id: Application id to be modified
         :return: JSON object with status and message
         """
@@ -559,6 +537,7 @@ def create_app():
     def recommend_resume():
         """
         Recommends a list of jobs in fortune 500 companies based on the user's resume using pdf parsing and ChatGPT
+        :return: JSON object with status and message
         """
         try:
             userid = get_userid_from_header()
@@ -590,7 +569,6 @@ def create_app():
     def upload_resume():
         """
         Uploads resume file or updates an existing resume for the user
-
         :return: JSON object with status and message
         """
         try:
@@ -619,7 +597,6 @@ def create_app():
     def get_resume():
         """
         Retrieves the resume file for the user
-
         :return: response with file
         """
         try:
@@ -649,6 +626,10 @@ def create_app():
 
     @app.route("/set_reminder/<int:application_id>", methods=["POST"])
     def set_reminder(application_id):
+        """
+        Sets the email reminder flag responsible for sending email notification for items pending in wishlist
+        :return: JSON object
+        """
         try:
             userid = get_userid_from_header()
         
@@ -670,8 +651,11 @@ def create_app():
             return jsonify({"error": "Internal server error"}), 200
     
     def generate_pdf(data):
+        """
+        Generates document for resume
+        :return: Byte stream
+        """
         doc = Document()
-
         # Set page margins to fit within one page
         sections = doc.sections
         for section in sections:
@@ -761,6 +745,10 @@ def create_app():
 
     @app.route('/resumebuilder', methods=['POST'])
     def form_builder():
+        """
+        Transfers resume document
+        :return: File
+        """
         try:
             # Assuming the request data is in JSON format
             data = request.json
@@ -801,6 +789,7 @@ def create_app():
 
 
 app = create_app()
+
 with open("application.yml") as f:
     info = yaml.load(f, Loader=yaml.FullLoader)
     username = info["username"]
@@ -833,7 +822,6 @@ class Users(db.Document):
     def to_json(self):
         """
         Returns the user details in JSON object
-
         :return: JSON object
         """
         return {"id": self.id, "fullName": self.fullName, "username": self.username}
@@ -842,7 +830,6 @@ class Users(db.Document):
 def get_new_user_id():
     """
     Returns the next value to be used for new user
-
     :return: key with new user_id
     """
     user_objects = Users.objects()
@@ -859,7 +846,6 @@ def get_new_user_id():
 def get_new_application_id(user_id):
     """
     Returns the next value to be used for new application
-
     :param: user_id: User id of the active user
     :return: key with new application_id
     """

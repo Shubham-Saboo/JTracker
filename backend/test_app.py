@@ -1,6 +1,17 @@
-# """
-# Test module for the backend
-# """
+
+"""
+Copyright (c) 2023 Rajat Chandak, Shubham Saboo, Vibhav Deo, Chinmay Nayak
+This code is licensed under MIT license (see LICENSE for details)
+
+@author: JobTracker
+
+
+This python file is used in and is part of the testing suite of the JobTracker project.
+
+For more information about the JobTracker project, visit:
+https://github.com/Shubham-Saboo/JTracker
+
+"""
 import hashlib
 from io import BytesIO
 
