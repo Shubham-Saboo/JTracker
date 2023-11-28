@@ -82,6 +82,10 @@ The introductory visual interface displayed from which a user is able to access 
 
 <p align="center"><img width="700" src="./resources/nchatBox.PNG"></p>
 
+### Chat Box Demo
+
+<p align="center"><img width="700" src="./resources/chatBoxDemo.PNG"></p>
+
 ### Job search Page
 
 The interface through which a user is able to search for specific jobs and add them to Waitlisted Applications.
@@ -93,6 +97,16 @@ The interface through which a user is able to search for specific jobs and add t
 
 <p align="center"><img width="700" src="./resources/njobSearch.PNG"></p>
 <p align="center"><img width="700" src="./resources/njobSearch1.PNG"></p>
+
+### Resume Builder
+
+<p align="center"><img width="700" src="./resources/resumeBuilder.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder1.PNG"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder2.PNG"></p>
+
+### Resume Builder Result
+
+<p align="center"><img width="700" src="./resources/resumeBuilderResult.PNG"></p>
 
 ### SearchPage with Salary filter
 
@@ -110,16 +124,6 @@ The interface through which a user is able to search for specific jobs based on 
 3. Click on download button to Download the uploaded file.
 
 <p align="center"><img width="700" src="./resources/resume.png"></p>
-
-### Resume Builder
-
-<p align="center"><img width="700" src="./resources/resumeBuilder.PNG"></p>
-<p align="center"><img width="700" src="./resources/resumeBuilder1.PNG"></p>
-<p align="center"><img width="700" src="./resources/resumeBuilder2.PNG"></p>
-
-### Resume Builder Result
-
-<p align="center"><img width="700" src="./resources/resumeBuilderResult.PNG"></p>
 
 ### Recommendations Page
 
