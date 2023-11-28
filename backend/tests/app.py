@@ -796,6 +796,91 @@ def create_app():
             return jsonify(chat)
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+        
+    def get_new_user_id():
+        """
+        Returns the next value to be used for new user
+
+        :return: key with new user_id
+        """
+        user_objects = Users.objects()
+        if len(user_objects) == 0:
+            return 1
+
+        new_id = 0
+        for a in user_objects:
+            new_id = max(new_id, a["id"])
+
+        return new_id + 1
+
+
+    def get_new_application_id(user_id):
+        """
+        Returns the next value to be used for new application
+
+        :param: user_id: User id of the active user
+        :return: key with new application_id
+        """
+        user = Users.objects(id=user_id).first()
+
+        if len(user["applications"]) == 0:
+            return 1
+
+        new_id = 0
+        for a in user["applications"]:
+            new_id = max(new_id, a["id"])
+
+        return new_id + 1
+    def generate_pdf(data):
+        doc = Document()
+
+        # Set page margins to fit within one page
+        sections = doc.sections
+        for section in sections:
+            section.left_margin = Pt(36)  # 0.5 inch
+            section.right_margin = Pt(36)  # 0.5 inch
+            section.top_margin = Pt(36)  # 0.5 inch
+            section.bottom_margin = Pt(36)  # 0.5 inch
+
+        # Helper function to add heading with format
+        def add_heading_with_format(doc, text, font_size=16, is_bold=True):
+            p = doc.add_paragraph()
+            run = p.add_run(text)
+            if is_bold:
+                run.bold = True
+            p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+            run.font.size = Pt(font_size)
+
+        # Function to add details section
+        def add_details_section(doc, section_title, details, is_bold_title=True):
+            if section_title:
+                add_heading_with_format(doc, section_title, font_size=14, is_bold=True)
+            for detail in details:
+                for key, value in detail.items():
+                    if key == "company":
+                        p = doc.add_paragraph()
+                        run = p.add_run(value)
+                        run.bold = True
+                        p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+                    elif key == "project_title":
+                        # Add the value of "project_title" with bold formatting
+                        p = doc.add_paragraph()
+                        run = p.add_run(value)
+                        run.bold = True
+                        p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+                    elif key == "descriptionc":
+                        # Add the value of "descriptionc" without "descriptionc" prefix
+                        doc.add_paragraph(value, style="List Bullet")
+                    elif key != "descriptionc" and key != "level" and key != "extracurricularActivities":
+                        if key == "university":
+                            # Add the value of "university" with bold formatting and without a bullet
+                            p = doc.add_paragraph()
+                            run = p.add_run("University: " + value)
+                            run.bold = True
+                            p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+                        else:
+                            doc.add_paragraph(f"{value}", style="List Bullet")
+
 
     return app
 

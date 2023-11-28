@@ -36,7 +36,10 @@ jobs:
         cd ./backend/tests
         echo 'Created application.yml'
         pwd
+        pip install codecov
+        pip install pytest-cov
         pytest --cov-report xml:cov.xml --cov=./ ./
+        codecov
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       env:

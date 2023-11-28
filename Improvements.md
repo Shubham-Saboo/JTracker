@@ -2,27 +2,20 @@
 
 When our team took over the project from the previous group, we thoroughly reviewed the project in order to establish an effective takeover strategy. We attempted to improve the project in as many ways as possible. We've detailed the enhancements we've made in this document.
 
-* Easier setup instructions and Installation process:
-The previous instructions were cumbersome and unnecessarily manual. In Phase 2, we have provided shell scripts that automate the installation and setup of all required packages. We also included startup and shutdown scripts, preventing the need for multiple terminals as the previous instructions suggested.
+* UI Enhancement:
+The UI for the previous application was very basic and not very appealing. With the help of Material UI we were able to enhance the UI by leaps and bounds.
 
-* Restructuring the Flask application:
-The previous structure of the Flask application from phase 1 was not compatible for the testing. In this Phase 2, we have restructured the Flask application file app.py and have written tests on the API endpoints.
+* Resume Builder:
+We added a resume builder feature which will enable the users to generate a resume in a word file without getting worried about formatting the document. The user input the values in the required fields and can download the resume.
 
-* Writing unit tests:
-In Phase 1, there were no unit tests written for the application. In Phase 2, we have written unit tests using pytest and pytest-mock. More information on the test cases can be found in the Software documentation file. 
+* Cover Letter Generator:
+Using the latest ChatGPT-3.5-Turbo OpenAI API , we were able to generate a cover letter for a particular job role and company taken as input from the user. The user can then download the cover letter from our website.
 
-* Introducing Database:
-Previously, the company data was stored in a CSV file. We have constructed a database to store all the information of the companies. We have used MongoDB to create the database.
+* Interactive ChatBot:
+We implemented a ChatBot using OpenAI API which will be a great aid for candidates searching for a job and can be used to answer queries quickly.
 
-* Removing unused codes and updating Gitignore:
-We have removed some of the project's local environment related files which should not be present in the repository. For example: pycache folder. Previously, the gitignore files were not capable of ignoring e.g. the pycache folder. So, we have also updated the gitignore file so that no unnecessary files get pushed in future commits.
+* Application reminder:
+It sets an application reminder notifications for the applications currently present in the wishlist applications.
 
-* CI/CD Pipeline for Frontend app:
-We have created a CI/CD pipeline for the react(frontend) application using Github Actions. The React application has been deployed to Github pages. The application can be accessed using the following link https://team-glare.github.io/application-tracking-system/ 
-Since the flask(backend) application has not been deployed, the react application is not fully functional.  
-
-* Adding Linters, Code formatters:
-We have added super-linter to our CI pipeline using Github Actions.
-
-* Adding Software documentation:
-We have added elaborate software documentation mentioning all the endpoint details.
+* Dashboard:
+Created a personal dashboard for the user to keep a track of all the applications and display the count through a bargraph.

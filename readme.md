@@ -1,18 +1,19 @@
 https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-aa15-99cd752ab0cc.mp4
 
 [![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
-[![DOI](https://zenodo.org/badge/702631309.svg)](https://zenodo.org/doi/10.5281/zenodo.10026046)
-[![codecov](https://codecov.io/gh/Shubham-Saboo/JTracker/branch/main/graph/badge.svg)](https://codecov.io/gh/Shubham-Saboo/JTracker)
+[![DOI](https://zenodo.org/badge/722773583.svg)](https://zenodo.org/doi/10.5281/zenodo.10211927)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/Shubham-Saboo/JTracker)
 ![GitHub top language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)
-[![Super Linter](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml)
 ![last commit](https://img.shields.io/github/last-commit/Shubham-Saboo/JTracker)
 [![Repo-size](https://img.shields.io/github/repo-size/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![file_count](https://img.shields.io/github/directory-file-count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![language_count](https://img.shields.io/github/languages/count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Downloads](https://img.shields.io/github/downloads/Shubham-Saboo/JTracker/total)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Release](https://img.shields.io/github/v/release/Shubham-Saboo/JTracker)](https://gitHub.com/Shubham-Saboo/JTracker)
+[![codecov](https://codecov.io/gh/Shubham-Saboo/JTracker/branch/main/graph/badge.svg)](https://codecov.io/gh/Shubham-Saboo/JTracker)
+[![Lint](https://github.com/Shubham-Saboo/JTracker/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/syntax_checker.yml)
+[![Python Style Checker](https://github.com/Shubham-Saboo/JTracker/actions/workflows/style_checker.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/style_checker.yml)
 
 # Job-Tracker - Your Job Tracking Assistant
 
@@ -65,15 +66,23 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<p align="center"><img width="700" src="./resources/login.png"></p>
+<p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
 
 ### HomeScreen
 
 The introductory visual interface displayed from which a user is able to access different cards - Waitlisted applications, Waiting for Refereals, Applied Jobs, Application Status.The user can also add cards through this screen.
 
-<p align="center"><img width="700" src="./resources/home_screen.png"></p>
+<p align="center"><img width="700" src="./resources/nhomeScreen.PNG"></p>
 
-### SearchPage
+### Side Bar
+
+<p align="center"><img width="700" src="./resources/nsideBar.PNG"></p>
+
+### Chat Box
+
+<p align="center"><img width="700" src="./resources/nchatBox.PNG"></p>
+
+### Job search Page
 
 The interface through which a user is able to search for specific jobs and add them to Waitlisted Applications.
 
@@ -82,8 +91,8 @@ The interface through which a user is able to search for specific jobs and add t
 3. Click on Create buttop.
 4. The application will then be saved as per the selected category.
 
-<p align="center"><img width="700" src="./resources/search.png"></p>
-<p align="center"><img width="700" src="./resources/newjobdetails1.PNG"></p>
+<p align="center"><img width="700" src="./resources/njobSearch.PNG"></p>
+<p align="center"><img width="700" src="./resources/njobSearch1.PNG"></p>
 
 ### SearchPage with Salary filter
 
@@ -101,6 +110,12 @@ The interface through which a user is able to search for specific jobs based on 
 3. Click on download button to Download the uploaded file.
 
 <p align="center"><img width="700" src="./resources/resume.png"></p>
+
+### Resume Builder
+
+<p align="center"><img width="700" src="./resources/resumeBuilder.png"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder1.png"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder2.png"></p>
 
 ### Recommendations Page
 
@@ -121,29 +136,44 @@ The interface through which a user is able to search for specific jobs based on 
 ### Cover Letter Generator
 
 1. Fill in the Role, Company and the skills that you want to highlight in your cover letter
-2. OpenAI API generates a cover letter  which is returned as a doc file
+2. OpenAI API generates a cover letter which is returned as a doc file
 3. Click on the download button to download your cover letter
 
 <p align="center"><img width="700" src="./resources/recommendations.png"></p>
 ### Whats New
 
 #### Version 2.0.0
+
 - Major bug fixes for the job search feature
 - Implemented an interactive ChatBot to solve user queries
 - Added a new feature to build a resume in a word file from user input
 - Used the OpenAI API to generate the cover letter for a specific company and Job Role
 
 #### Version 2.0.1
+
 - Enhanced the UI of the application with major upgrades
 - Added a Set Reminder function for wishlist applications
 - Modified the SideBar and the Navigation Bar
 - Updated badges for repo
 
 #### Version 2.1.1
+
 - Minor Bug Fixes
 - Updated GitHub workflows files
 - Added test cases
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+
+> > > > > > > Stashed changes
+
+## Roadmap:
+
+![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
+
+> > > > > > > Stashed changes
 
 ## Future Scope:
 
@@ -227,7 +257,7 @@ mongod
 
 1. [Create account](https://account.mongodb.com/account/register) for MongoDB
 
-** **_If current MongoDB Atlas owner adds your username/password to the cluster, skip to step 4_** **
+\*\* **_If current MongoDB Atlas owner adds your username/password to the cluster, skip to step 4_** \*\*
 
 2. Follow MongoDB Atlas [Setup Guide](https://docs.atlas.mongodb.com/getting-started/) to create a database collection for hosting applications
 3. In `app.py` set `'host'` string to your MongoDB Atlas connection string
