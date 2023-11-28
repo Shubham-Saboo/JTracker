@@ -192,7 +192,7 @@ The interface through which a user is able to search for specific jobs and add t
 ## Future Scope:
 
 - Implement recruiter side functionalities.
-- Create profile updatation functionality.
+- Create profile updation functionality.
 - Add a feature that allows users to attach the wishlist reminders to their Google calendar.
 - Add a storage option for resumes and cover letters so they can be saved for future use.
 - Include a direct link to the company's application site when the wishlist item is clicked.
