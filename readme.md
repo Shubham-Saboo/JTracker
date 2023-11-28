@@ -1,18 +1,19 @@
 https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-aa15-99cd752ab0cc.mp4
 
 [![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
-[![DOI](https://zenodo.org/badge/702631309.svg)](https://zenodo.org/doi/10.5281/zenodo.10026046)
-[![codecov](https://codecov.io/gh/Shubham-Saboo/JTracker/branch/main/graph/badge.svg)](https://codecov.io/gh/Shubham-Saboo/JTracker)
+[![DOI](https://zenodo.org/badge/722773583.svg)](https://zenodo.org/doi/10.5281/zenodo.10211927)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/Shubham-Saboo/JTracker)
 ![GitHub top language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)
-[![Super Linter](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml)
 ![last commit](https://img.shields.io/github/last-commit/Shubham-Saboo/JTracker)
 [![Repo-size](https://img.shields.io/github/repo-size/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![file_count](https://img.shields.io/github/directory-file-count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![language_count](https://img.shields.io/github/languages/count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Downloads](https://img.shields.io/github/downloads/Shubham-Saboo/JTracker/total)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Release](https://img.shields.io/github/v/release/Shubham-Saboo/JTracker)](https://gitHub.com/Shubham-Saboo/JTracker)
+[![codecov](https://codecov.io/gh/Shubham-Saboo/JTracker/branch/main/graph/badge.svg)](https://codecov.io/gh/Shubham-Saboo/JTracker)
+[![Lint](https://github.com/Shubham-Saboo/JTracker/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/syntax_checker.yml)
+[![Python Style Checker](https://github.com/Shubham-Saboo/JTracker/actions/workflows/style_checker.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/style_checker.yml)
 
 # Job-Tracker - Your Job Tracking Assistant
 
