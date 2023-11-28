@@ -2,12 +2,20 @@ https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-
 
 [![GitHub license](https://img.shields.io/github/license/Shubham-Saboo/JTracker)](https://github.com/Shubham-Saboo/JTracker/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/702631309.svg)](https://zenodo.org/doi/10.5281/zenodo.10026046)
-[![codecov](https://codecov.io/gh/Cynamide/application-tracking-system/branch/main/graph/badge.svg)](https://codecov.io/gh/Cynamide/application-tracking-system)
+[![codecov](https://codecov.io/gh/Shubham-Saboo/JTracker/branch/main/graph/badge.svg)](https://codecov.io/gh/Shubham-Saboo/JTracker)
 ![GitHub issues](https://img.shields.io/github/issues/Shubham-Saboo/JTracker)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/Shubham-Saboo/JTracker)
 ![GitHub top language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)
 [![Super Linter](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml)
-
+![last commit](https://img.shields.io/github/last-commit/Shubham-Saboo/JTracker)
+![Lines of code](https://tokei.rs/b1/github/Shubham-Saboo/JTracker)
+[![Repo-size](https://img.shields.io/github/repo-size/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
+[![file_count](https://img.shields.io/github/directory-file-count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
+[![language_count](https://img.shields.io/github/languages/count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
+[![Downloads](https://img.shields.io/github/downloads/Shubham-Saboo/JTracker/total)](https://GitHub.com/Shubham-Saboo/JTracker/)
+[![Top Language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
+[![Release](https://img.shields.io/github/v/release/Shubham-Saboo/JTracker)](https://gitHub.com/Shubham-Saboo/JTracker)
+[![Build and Deploy Frontend](https://github.com/Shubham-Saboo/JTracker/actions/workflows/frontend_CI_CD.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/frontend_CI_CD.yml)
 # J-Tracker - Your Job Tracking Assistant
 
 https://user-images.githubusercontent.com/43064854/135554150-c06afd4e-d223-47e3-b123-b45f9cd1b87a.mp4
