@@ -108,7 +108,7 @@ class TestApp(unittest.TestCase):
                 # Add other fields as necessary
             }
         }
-        response = self.app.post('/applications', json=payload)
+        response = self.app.post('/applications',headers={"Authorization": "Bearer mock_token"}, json=payload)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json['jobTitle'], 'Test Job')
         self.assertEqual(response.json['companyName'], 'Test Company')
