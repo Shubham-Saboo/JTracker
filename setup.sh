@@ -23,6 +23,7 @@ npm install react-icons
 npm install @mui/material @emotion/react @emotion/styled
 npm install chart.js@3 react-chartjs-2@3
 npm install @mui/icons-material
+npm i --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 exit_result $? "NPM package installation"
 virtualenv venv
 source venv/bin/activate
