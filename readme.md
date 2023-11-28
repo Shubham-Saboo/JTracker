@@ -71,7 +71,7 @@ The introductory visual interface displayed from which a user is able to registe
 
 The introductory visual interface displayed from which a user is able to access different cards - Waitlisted applications, Waiting for Refereals, Applied Jobs, Application Status.The user can also add cards through this screen.
 
-<p align="center"><img width="700" src="./resources/home_screen.png"></p>
+<p align="center"><img width="700" src="./resources/nhomeScreen.PNG"></p>
 
 ### SearchPage
 
