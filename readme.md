@@ -195,11 +195,13 @@ The interface through which a user is able to search for specific jobs and add t
 - [pip](https://pip.pypa.io/en/stable/installation/) (Latest version 21.3 used as of 11/3)
 - [npm](https://nodejs.org/en/) (Latest version 6.14.4 used as of 11/3)
 
-### Strongly Recommended:
+### Follow the following steps:
 
-- A terminal environment capable of handling bash scripts.
-
-To install all required packages, while within the context of project root directory, run:
+- Install nvm
+- in terminal run: install node 16
+- Restart your device
+- execute setup.sh using './setup.sh'
+- npm install yarn
 
 ```
 ./setup.sh
