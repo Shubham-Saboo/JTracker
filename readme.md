@@ -77,6 +77,10 @@ The introductory visual interface displayed from which a user is able to access 
 
 <p align="center"><img width="700" src="./resources/nsideBar.PNG"></p>
 
+### Side Bar
+
+<p align="center"><img width="700" src="./resources/nchatBox.PNG"></p>
+
 ### SearchPage
 
 The interface through which a user is able to search for specific jobs and add them to Waitlisted Applications.
