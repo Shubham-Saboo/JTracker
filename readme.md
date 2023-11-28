@@ -163,6 +163,10 @@ The interface through which a user is able to search for specific jobs and add t
 - Updated GitHub workflows files
 - Added test cases
 
+## Roadmap:
+
+![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
+
 ## Future Scope:
 
 - Add a feature that allows users to attach the wishlist reminders to their Google calendar.
