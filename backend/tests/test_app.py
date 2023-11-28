@@ -1,5 +1,5 @@
 import unittest
-from app import create_app,Users,generate_pdf
+from app import create_app,Users
 from unittest.mock import patch, MagicMock
 
 from io import BytesIO
