@@ -33,7 +33,10 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
     - name: Test with pytest, upload to codecov
       run: |
-        cd ./backend/tests
+        cd ./backend
+        flask run
+        sleep 10
+        cd ./tests
         coverage run test_app.py
         coverage xml -i
     - name: Upload coverage reports to Codecov
