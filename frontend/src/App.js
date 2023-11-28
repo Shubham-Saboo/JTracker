@@ -11,7 +11,8 @@ import JobRecommendPage from "./jobRec/JobRecommendPage";
 import ResumeBuilder from "./resume/ResumeBuilder";
 import CoverLetter from "./resume/CoverLetter";
 import Navbar from "./component/Navbar";
-import UserProfile from './profile/ProfilePage';import Chatbot from "./ChatBot/Chatbot";
+import UserProfile from "./profile/ProfilePage";
+import Chatbot from "./ChatBot/Chatbot";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,9 +25,8 @@ export default class App extends React.Component {
       JobRecommendPage: <JobRecommendPage />,
       ResumeBuilder: <ResumeBuilder />,
       UserProfile: <UserProfile />,
-      Chatbot: <Chatbot/>,
-      CoverLetter:<CoverLetter/>
-
+      Chatbot: <Chatbot />,
+      CoverLetter: <CoverLetter />,
     };
     this.state = {
       currentPage: <LoginPage />,
@@ -73,7 +73,7 @@ export default class App extends React.Component {
           </div>
           <div className="main">
             <div>
-              <Navbar switchPage={this.switchPage.bind(this)}/>
+              <Navbar switchPage={this.switchPage.bind(this)} />
             </div>
             <div className="content">
               <div className="">
@@ -86,7 +86,7 @@ export default class App extends React.Component {
               <button
                 style={{
                   position: "absolute",
-                  top: "3.85vh",
+                  top: "3.99vh",
                   left: "90vw",
                   // marginRight: "500px",
                   backgroundColor: "#009970",
@@ -95,11 +95,9 @@ export default class App extends React.Component {
               >
                 Logout
               </button>
-              
             </div>
-          
           </div>
-          <Chatbot/>
+          <Chatbot />
         </div>
       );
     } else {
@@ -113,13 +111,9 @@ export default class App extends React.Component {
               <div className=""></div>
               <LoginPage side={this.sidebarHandler} />
             </div>
-            
           </div>
-        
         </div>
-        
-      )
-      ;
+      );
     }
     return app;
   }
