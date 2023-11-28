@@ -94,18 +94,6 @@ The interface through which a user is able to search for specific jobs and add t
 <p align="center"><img width="700" src="./resources/njobSearch.PNG"></p>
 <p align="center"><img width="700" src="./resources/njobSearch1.PNG"></p>
 
-### SearchPage
-
-The interface through which a user is able to search for specific jobs and add them to Waitlisted Applications.
-
-1. Navigate to Job search page, search for particular Job.
-2. Click on Add button. Fill in the Details.
-3. Click on Create buttop.
-4. The application will then be saved as per the selected category.
-
-<p align="center"><img width="700" src="./resources/search.png"></p>
-<p align="center"><img width="700" src="./resources/newjobdetails1.PNG"></p>
-
 ### SearchPage with Salary filter
 
 The interface through which a user is able to search for specific jobs based on the salary range selected.
@@ -122,6 +110,12 @@ The interface through which a user is able to search for specific jobs based on 
 3. Click on download button to Download the uploaded file.
 
 <p align="center"><img width="700" src="./resources/resume.png"></p>
+
+### Resume Builder
+
+<p align="center"><img width="700" src="./resources/resumeBuilder.png"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder1.png"></p>
+<p align="center"><img width="700" src="./resources/resumeBuilder2.png"></p>
 
 ### Recommendations Page
 
