@@ -64,7 +64,12 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
+<<<<<<< Updated upstream
+
+# <p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
+
+<p align="center"><img width="700" src="./resources/nlogin.png"></p>
+>>>>>>> Stashed changes
 
 ### HomeScreen
 
@@ -109,6 +114,18 @@ The interface through which a user is able to search for specific jobs and add t
 ### Cover Letter Generator
 
 <p align="center"><img width="700" src="./resources/coverletterPage.PNG"></p>
+
+### Cover Letter Generator
+
+<p align="center"><img width="700" src="./resources/coverLetterDemo.PNG"></p>
+
+### Manage Resume Page
+
+<p align="center"><img width="700" src="./resources/manageResume.PNG"></p>
+
+### Job Recommender Page
+
+<p align="center"><img width="700" src="./resources/njobRecommender.jpeg"></p>
 
 ### ResumePage
 
