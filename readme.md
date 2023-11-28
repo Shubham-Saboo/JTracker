@@ -8,14 +8,12 @@ https://user-images.githubusercontent.com/89501363/144725439-5d9191f8-df13-4814-
 ![GitHub top language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)
 [![Super Linter](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/super-linter.yml)
 ![last commit](https://img.shields.io/github/last-commit/Shubham-Saboo/JTracker)
-![Lines of code](https://tokei.rs/b1/github/Shubham-Saboo/JTracker)
 [![Repo-size](https://img.shields.io/github/repo-size/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![file_count](https://img.shields.io/github/directory-file-count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![language_count](https://img.shields.io/github/languages/count/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Downloads](https://img.shields.io/github/downloads/Shubham-Saboo/JTracker/total)](https://GitHub.com/Shubham-Saboo/JTracker/)
-[![Top Language](https://img.shields.io/github/languages/top/Shubham-Saboo/JTracker)](https://GitHub.com/Shubham-Saboo/JTracker/)
 [![Release](https://img.shields.io/github/v/release/Shubham-Saboo/JTracker)](https://gitHub.com/Shubham-Saboo/JTracker)
-[![Build and Deploy Frontend](https://github.com/Shubham-Saboo/JTracker/actions/workflows/frontend_CI_CD.yml/badge.svg)](https://github.com/Shubham-Saboo/JTracker/actions/workflows/frontend_CI_CD.yml)
+
 # J-Tracker - Your Job Tracking Assistant
 
 https://user-images.githubusercontent.com/43064854/135554150-c06afd4e-d223-47e3-b123-b45f9cd1b87a.mp4
@@ -36,10 +34,12 @@ Our application keeps track of the jobs you've added to your wish list. It also 
     - [SearchPage with Salary filter](#searchpage-with-salary-filter)
     - [ResumePage](#resumepage)
     - [Recommendations Page](#recommendations-page)
+    - [Resume Builder](#resume-builder)
+    - [Cover Letter Generator](#cover-letter-generator)
     - [Whats New](#whats-new)
-      - [Version 1.1](#version-11)
-      - [Version 1.0.3](#version-103)
-      - [Version 1.1.1](#version-111)
+      - [Version 2.0.0](#version-200)
+      - [Version 2.0.1](#version-201)
+      - [Version 2.1.0](#version-211)
   - [Roadmap:](#roadmap)
   - [Future Scope:](#future-scope)
   - [Explanation:](#explanation)
@@ -55,7 +55,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
     - [Hosted database with MongoDB Atlas:](#hosted-database-with-mongodb-atlas)
   - [License](#license)
   - [How to Contribute?](#how-to-contribute)
-  - [Team Members (Group 16)](#team-members-group-16)
+  - [Team Members (Group 53)](#team-members-group-53)
 
 ## Basic Design:
 
@@ -112,6 +112,21 @@ The interface through which a user is able to search for specific jobs based on 
 
 <p align="center"><img width="700" src="./resources/recommendations.png"></p>
 
+### Resume Builder
+
+1. Navigate to the Resume Builder page from the Sidebar
+2. Fill in your details and click the submit button
+3. Download the resume generated as a doc file
+
+<p align="center"><img width="700" src="./resources/recommendations.png"></p>
+
+### Cover Letter Generator
+
+1. Fill in the Role, Company and the skills that you want to highlight in your cover letter
+2. OpenAI API generates a cover letter  which is returned as a doc file
+3. Click on the download button to download your cover letter
+
+<p align="center"><img width="700" src="./resources/recommendations.png"></p>
 ### Whats New
 
 #### Version 2.0.0
@@ -125,10 +140,11 @@ The interface through which a user is able to search for specific jobs based on 
 - Added a Set Reminder function for wishlist applications
 - Modified the SideBar and the Navigation Bar
 - Updated badges for repo
-- Updated GitHub workflows files
 
-**Job Recommendations Video (Added in Version 1.1.1)**
-Watch: https://github.com/Cynamide/application-tracking-system/blob/ff0691c919330a2c8cf80854fe969e31214671b4/resources/JobRecommendationsDemo.mp4
+#### Version 2.1.1
+- Minor Bug Fixes
+- Updated GitHub workflows files
+- Added test cases
 
 
 ## Roadmap:
