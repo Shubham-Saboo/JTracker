@@ -106,7 +106,7 @@ class Card extends Component {
               style={{
                 justifyContent: "center",
                 display: "flex",
-                backgroundColor: "#009970",
+                backgroundColor: "#388087",
                 flex: "1",
               }}
             >
@@ -122,7 +122,7 @@ class Card extends Component {
                   display: "inline-block",
                   boxShadow: "0 0 2px #888",
                   padding: "0.5em 0.6em",
-                  backgroundColor: "#009970",
+                  backgroundColor: "#388087",
                   color: "white",
                 }}
               >

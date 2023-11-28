@@ -1,3 +1,4 @@
+/* #ebf0f7 */
 .btn-icon {
   max-width: fit-content;
   background-color: #7784ee;
@@ -31,7 +32,7 @@
 .main {
   overflow: auto;
   min-height: 100vh;
-  background-color: #ebf0f7;
+  background-color: #f6f6f2;
 }
 .content {
   padding-right: 7.5rem;
@@ -137,7 +138,7 @@ input:focus-visible {
 .main-page {
   display: flex;
   justify-content: center; /* Center-align the content horizontally */
-  background-color: #ebf0f7;
+  background-color: #f6f6f2;
 }
 
 .sidebar {
@@ -150,7 +151,7 @@ input:focus-visible {
 .main {
   flex: 1;
   overflow: auto;
-  background-color: #ebf0f7;
+  background-color: #f6f6f2;
 }
 .card-action {
   display: flex;
