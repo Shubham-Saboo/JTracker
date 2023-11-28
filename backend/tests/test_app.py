@@ -1,5 +1,5 @@
 import unittest
-from app import create_app
+from app import create_app,get_userid_from_header,Users
 from unittest.mock import patch, MagicMock
 
 from io import BytesIO
@@ -151,7 +151,9 @@ class TestApp(unittest.TestCase):
 
         # Assert the response status code to ensure authorization is successful
         self.assertEqual(response.status_code, 200)
-    
+
+    @patch('app.get_userid_from_header')
+    @patch('app.Users.objects')
     def test_upload_resume(self, mock_user_objects, mock_userid_from_header):
        # Mocking the Users.objects method to return a dummy user object
        dummy_user = {
