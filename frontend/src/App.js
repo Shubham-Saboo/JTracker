@@ -86,8 +86,8 @@ export default class App extends React.Component {
               <button
                 style={{
                   position: "absolute",
-                  top: "3.99vh",
-                  left: "90vw",
+                  top: "5vh",
+                  left: "87.8vw",
                   // marginRight: "500px",
                   backgroundColor: "red",
                 }}
