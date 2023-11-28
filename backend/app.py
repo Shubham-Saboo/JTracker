@@ -31,7 +31,7 @@ import requests
 from email.message import EmailMessage
 #import schedule
 from threading import Thread
-import time
+#import time
 import smtplib
 # from google.oauth2 import service_account
 # from googleapiclient.discovery import build
