@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import UserProfile from "../profile/ProfilePage";
 import "../static/navbar.css";
 
