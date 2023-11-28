@@ -65,7 +65,7 @@ Our application keeps track of the jobs you've added to your wish list. It also 
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<p align="center"><img width="700" src="./resources/nlogin.png"></p>
+<p align="center"><img width="700" src="./resources/nlogin.PNG"></p>
 
 ### HomeScreen
 
@@ -151,11 +151,14 @@ The interface through which a user is able to search for specific jobs based on 
 <<<<<<< Updated upstream
 =======
 =======
->>>>>>> Stashed changes
+
+> > > > > > > Stashed changes
+
 ## Roadmap:
 
 ![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
->>>>>>> Stashed changes
+
+> > > > > > > Stashed changes
 
 ## Future Scope:
 
